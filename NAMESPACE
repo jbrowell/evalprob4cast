@@ -2,3 +2,7 @@
 
 export(add)
 export(loadData)
+export(plotFc)
+export(quantilePlot)
+export(spaghettiPlot)
+export(summaryStats)

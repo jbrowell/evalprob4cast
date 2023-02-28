@@ -4,7 +4,13 @@
 \alias{loadData}
 \title{Load all forecast and observation data}
 \usage{
-loadData(dir)
+loadData(
+  dir,
+  timeformat_f = "default",
+  timeformat_obs = "default",
+  timezone_f = "UTC",
+  timezone_obs = "UTC"
+)
 }
 \arguments{
 \item{dir}{A directory containing forecast and observation data.}
