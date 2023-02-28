@@ -5,7 +5,7 @@
 \title{Load all forecast and observation data}
 \usage{
 loadData(
-  dir,
+  path,
   timeformat_f = "default",
   timeformat_obs = "default",
   timezone_f = "UTC",
