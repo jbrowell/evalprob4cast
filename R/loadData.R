@@ -3,21 +3,21 @@
 #' @param dir A directory containing forecast and observation data.
 #' @return A list with two elements. The first element contains forecast data as a list, and the second contains observations.
 #' @export
-loadData <- function(dir,timeformat_f="default",timeformat_obs="default",
+loadData <- function(path,timeformat_f="default",timeformat_obs="default",
                      timezone_f="UTC",timezone_obs="UTC"){
-
-  filelist <- list.files(dir)
+  
+  filelist <- list.files(path)
   fcfiles <- grepl("forecast",filelist)
   nfcfiles <- sum(fcfiles)
   fcnames <- filelist[fcfiles]
   
   datl <- list()
   for(i in 1:nfcfiles){
-    datl[[i]] <- read.table(paste0("data/",fcnames[i]),sep=",",header=T,stringsAsFactors = F,na.strings = "-")
-    names(datl)[i] <- fcnames[i]
+    datl[[i]] <- read.table(paste0(path,fcnames[i]),sep=",",header=T,stringsAsFactors = F,na.strings = "-")
+    names(datl)[i] <- gsub(".csv","",gsub("forecast_","",fcnames[i]))
   }
   
-  obs <- read.table(paste0("data/",filelist[grepl("observations",filelist)]),sep=",",header=T,stringsAsFactors = F,na.strings = "-")
+  obs <- read.table(paste0(path,filelist[grepl("observations",filelist)]),sep=",",header=T,stringsAsFactors = F,na.strings = "-")
   colnames(obs)[2] <- "obs"
   
   
@@ -46,10 +46,15 @@ loadData <- function(dir,timeformat_f="default",timeformat_obs="default",
     for(i in 1:nfcfiles){
       datl[[i]][,1] <- as.POSIXct(strptime(datl[[i]][,1],format=timeformat_f,tz=timezone_f))
       colnames(datl[[i]])[1] <- "TimeStamp"
+      if(is.null(datl[[i]]$BaseTime)){
+        datl[[i]] <- cbind(data.frame(BaseTime = datl[[i]]$TimeStamp-lubridate::hour(datl[[i]]$TimeStamp)*60^2),
+                           datl[[i]])
+        datl[[i]]
+      }
     }
   }
   
   return(list(forecasts=datl,
               observations=obs))
-    
+  
 }
