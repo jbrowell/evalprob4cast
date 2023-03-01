@@ -1,5 +1,6 @@
 
 setwd("~/Documents/GitHub/RP-RES-forecast-evaluation/")
+# setwd("~/GitHub/RP-RES-forecast-evaluation/")
 
 library(devtools)
 library(roxygen2)
@@ -13,11 +14,19 @@ library(IEAwind51RP)
 
 
 
-
 ## Test functions...
 
-# Load data
-fc_obs_data <- loadData("data/")
+## Load data from raw/csv
+# fc_obs_data <- loadData(path = "sysdata/")
+# names(fc_obs_data)
+# fc_obs_data$forecasts$mseps200
+# sample_fc_obs_data <- fc_obs_data
+# save(sample_fc_obs_data,file = "data/IEAW51-SampleData.rda")
+
+## Load sample data included in package
+data("IEAW51-SampleData")
+fc_obs_data <- sample_fc_obs_data
+rm(sample_fc_obs_data)
 
 # Print summary statistics
 summaryStats(fc_obs_data)
