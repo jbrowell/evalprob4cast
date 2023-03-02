@@ -19,7 +19,9 @@ plotFc <- function(data,f_id,style="fanchart",xmax=100,main="Forecast",xlab="Tim
   obs <- data$observations
   dt <- f$TimeStamp
   
-  m <- f[,-1]
+  m <- f
+  m$BaseTime <- NULL
+  m$TimeStamp <- NULL
   
   if(style=="fanchart"){
     
