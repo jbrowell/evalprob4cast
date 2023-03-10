@@ -17,8 +17,11 @@ library(IEAwind51RP)
 
 ## Test functions...
 
-# Load data
-fc_obs_data <- loadData("sysdata/")
+## Load data
+# fc_obs_data <- loadData("sysdata/")
+data("IEAW51-SampleData")
+fc_obs_data <- sample_fc_obs_data
+rm(sample_fc_obs_data)
 
 # Print summary statistics
 summaryStats(fc_obs_data)
@@ -38,7 +41,7 @@ par(mfrow=c(1,1))
 f1 <- fc_obs_data$forecasts[[1]]
 plot(f1$m001,type="l")
 plot(fc_obs_data$obs$obs,type="l")
-quantilePlot(f1[,-c(1:2)],xlim=100)
+quantilePlot(f1[1:100,-c(1:2)],x=f1$TimeStamp[1:100])
 spaghettiPlot(f1[,-c(1:2)],xlim=100)
 
 plotFc(fc_obs_data,1,"fanchart",xmax=300)
