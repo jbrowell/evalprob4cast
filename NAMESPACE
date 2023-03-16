@@ -2,8 +2,13 @@
 
 export(add)
 export(checkForEvent)
+export(contingencyTable)
+export(crps)
+export(detectToBinary)
 export(eventDetect)
+export(forecastEvaluation)
 export(loadData)
+export(logs)
 export(plotFc)
 export(quantilePlot)
 export(spaghettiPlot)
