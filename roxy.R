@@ -4,8 +4,6 @@ setwd("~/Documents/GitHub/RP-RES-forecast-evaluation/")
 
 library(devtools)
 library(roxygen2)
-library(stringr)
-library(PRROC)
 
 # Update package documentation
 document(pkg = ".")
@@ -13,9 +11,6 @@ document(pkg = ".")
 # Install from local repository
 install(".")
 library(IEAwind51RP)
-
-
-
 
 ## Test functions...
 
@@ -51,6 +46,8 @@ plotFc(fc_obs_data,1,"spaghetti",xmax=300)
 
 plot(fc_obs_data$forecasts[[1]]$m001,type="l")
 plot(fc_obs_data$obs$obs,type="l")
+
+forecastEvaluation(fc_obs_data)
 
 #eventDetect(fc_obs_data,win=1)
 # ========================= #

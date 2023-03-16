@@ -27,7 +27,7 @@ quantilePlot <- function(m,x=NULL,main="Quantile Plot",xlab="Time",ylab="Quantit
   plot(x=rep(x,each=2),
        y=c(apply(tile,2,max),apply(tile,2,min)),
        type="n",
-       main=main,xlab=xlab,ylab=ylab,,...)#,cex.main=2,cex.lab=1.4,cex.axis=1.2)
+       main=main,xlab=xlab,ylab=ylab,...)#,cex.main=2,cex.lab=1.4,cex.axis=1.2)
   
   # Add grid
   if(grid==T){
