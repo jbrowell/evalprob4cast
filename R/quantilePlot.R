@@ -11,7 +11,7 @@
 #' @return Does not return anything, but displays a quantile plot.
 #' @export
 quantilePlot <- function(m,x=NULL,main="Quantile Plot",xlab="Time",ylab="Quantity",
-                     grid=T,col=c("light blue", "dark blue"),...){
+                     grid=T,col=c("light blue", "dark blue"),observations=NULL,...){
   
   # Prepare data for plotting
   m <- as.matrix(m)
@@ -39,6 +39,10 @@ quantilePlot <- function(m,x=NULL,main="Quantile Plot",xlab="Time",ylab="Quantit
   for(i in 1:(tiletot/2 - 1)){
     polygon(x = c(x,rev(x)),y = c(tile[i,],rev(tile[tiletot-i,])),
             col=colfunc(tiletot/2)[i],border=F)
+  }
+  
+  if(!is.null(observations)){
+    lines(x=x,y=observations)
   }
   
 }

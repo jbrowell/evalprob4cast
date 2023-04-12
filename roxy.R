@@ -39,13 +39,14 @@ f1 <- fc_obs_data$forecasts[[1]]
 plot(f1$m001,type="l")
 plot(fc_obs_data$obs$obs,type="l")
 quantilePlot(f1[1:100,-c(1:2)],x=f1$TimeStamp[1:100])
-spaghettiPlot(f1[,-c(1:2)],xlim=100)
+spaghettiPlot(f1[1:100,-c(1:2)])
 
-plotFc(fc_obs_data,1,"fanchart",xmax=300)
-plotFc(fc_obs_data,1,"spaghetti",xmax=300)
+plotFc(f1[1:200,-c(1:2)])
+plotFc(f1[1:200,-c(1:2)],type = "Spaghetti")
 
-plot(fc_obs_data$forecasts[[1]]$m001,type="l")
-plot(fc_obs_data$obs$obs,type="l")
+plotFc(f1[1:200,-c(1:2)],type = "Spaghetti",
+       x=f1$TimeStamp[1:200],
+       observations = fc_obs_data$obs$obs[1:200])
 
 forecastEvaluation(fc_obs_data)
 
