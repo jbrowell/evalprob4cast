@@ -5,43 +5,41 @@
 \title{Plot forecast}
 \usage{
 plotFc(
-  data,
-  f_id,
-  style = "fanchart",
-  xmax = 100,
-  main = "Forecast",
+  m,
+  x = NULL,
+  type = "Quantile Plot",
+  main = type,
   xlab = "Time",
   ylab = "Quantity",
-  xlim = 0,
-  ylim = 0,
   grid = T,
-  col = NULL,
-  dt.type = "normal"
+  observations = NULL,
+  col = if (type \%in\% c("Quantile Plot", "Fan Plot")) {
+     c("light blue",
+    "dark blue")
+ } else {
+     "gray"
+ }
 )
 }
 \arguments{
-\item{data}{Data object returned by the loadData function}
+\item{m}{Ensemble forecast data}
 
-\item{f_id}{forecast candidate}
+\item{x}{Optional time stamps corresponding to rows of \code{m}.}
 
-\item{style}{fanchart or spaghetti, defaults to fanchart}
+\item{main}{a main title for the plot, see also \code{?plot}.}
 
-\item{xmax}{Maximum number of observations plotted}
+\item{xlab}{a label for the x axis.}
 
-\item{main}{To be written in 2024.}
+\item{ylab}{a label for the y axis.}
 
-\item{xlab}{To be written in 2024.}
+\item{grid}{Add a grid to the plot background?}
 
-\item{ylab}{To be written in 2024.}
+\item{col}{Ends of the colour range for fan plot.}
 
-\item{grid}{To be written in 2024.}
-
-\item{col}{To be written in 2024.}
-
-\item{dt.type}{To be written in 2024.}
+\item{...}{Additional arguments passed to \code{plot()}}
 }
 \value{
-Does not return anything yet, but displays a quantile plot.
+Does not return anything, but displays a quantile plot.
 }
 \description{
 Plot forecast
