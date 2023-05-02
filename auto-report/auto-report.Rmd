@@ -1,0 +1,38 @@
+---
+title: "IEA Forecast Evaluation"
+author: "Recommended Practice R Package"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(IEAwind51RP)
+
+```
+
+## Load sample data
+
+
+```{r cars}
+data("IEAW51-SampleData")
+fc_obs_data <- sample_fc_obs_data
+rm(sample_fc_obs_data)
+
+# Print summary statistics
+summaryStats(fc_obs_data)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+f1 <- fc_obs_data$forecasts[[1]]
+spaghettiPlot(f1[1:100,-c(1:2)])
+```
+
+## Include Tables of Evaluation Metrics
+
+Comming soon...
+
