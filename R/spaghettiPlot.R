@@ -11,7 +11,7 @@
 #' @return Does not return anything, but displays a quantile plot.
 #' @export
 spaghettiPlot <- function(m,x=NULL,main="Spaghetti Plot",xlab="Time",ylab="Quantity",
-                          grid=T,col="gray",observations=NULL,...){
+                          grid=T,col="gray",...){
   
   # Identical for quanplot and spagplot
   m <- as.matrix(m)
@@ -31,10 +31,6 @@ spaghettiPlot <- function(m,x=NULL,main="Spaghetti Plot",xlab="Time",ylab="Quant
   # invisible(apply(m,2,function(y){lines(x,y,col=col)}))
   for(i in 1:dim(m)[2]){
     lines(x,m[,i],col=col)
-  }
-  
-  if(!is.null(observations)){
-    lines(x=x,y=observations)
   }
   
 }

@@ -17,12 +17,12 @@ plotFc <- function(m,x=NULL,type="Quantile Plot",main=type,xlab="Time",ylab="Qua
   if(type %in% c("Quantile Plot","Fan Plot")){
     
     quantilePlot(m=m,x=x,main=main,xlab=xlab,ylab=ylab,
-                 grid=grid,col=col,observations=observations)
+                 grid=grid,col=col)
     
   }else if(type=="Spaghetti"){
     
     spaghettiPlot(m=m,x=x,main=main,xlab=xlab,ylab=ylab,
-                  grid=grid,col=col,observations=observations)
+                  grid=grid,col=col)
     
   }else{
     cat("Invalid plot type, please type = 'Quantile Plot' or 'Spaghetti' \n")

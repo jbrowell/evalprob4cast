@@ -6,14 +6,14 @@
 #' @return Returns an event detection table
 #' @export
 
-eventDetectionTable <- function(data,change,window){
+eventDetectionTable <- function(data,change=-30,window=5){
   
   nfcfiles <- length(data$forecasts)
   
   detect_table_list <- list()
   for(i in 1:nfcfiles){
     dat_eval <- merge(data$observations,data$forecasts[[i]])
-    detect_table <- eventDetect(dat_eval,change=-30,window=4)
+    detect_table <- eventDetect(dat_eval,change=change,window=window)
     detect_table_list[[i]] <- detect_table[!is.na(rowMeans(detect_table[,-1])),]
     
     # Export detection table to results folder (should maybe be optional?)
