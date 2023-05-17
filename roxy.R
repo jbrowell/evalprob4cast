@@ -83,3 +83,9 @@ printContingencyTable(contingency_table)
 # ROC curve
 f=2
 roc <- rocCurve(detect_table_list[[f]],main=names(detect_table_list)[[f]])
+
+
+
+# Render report HTML
+rmarkdown::render("auto-report/auto-report.Rmd",output_file = "../sample_report.html")
+
