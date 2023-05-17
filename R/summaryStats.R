@@ -13,7 +13,8 @@ summaryStats <- function(data){
   
   for(i in 1:nfcfiles){
     fc <- f[[i]]
-    fc$BaseTime <- fc$TimeStamp <- NULL
+    # Only consider numerical columns for summary stats
+    fc[,sapply(fc,class)!="numeric"] <- NULL
     fc <- as.matrix(fc)
     sumstat.forecList[[i]] <- data.frame(mean=mean(fc,na.rm=T),
                                          min=min(fc,na.rm=T),
@@ -24,12 +25,14 @@ summaryStats <- function(data){
   }
   names(sumstat.forecList) <- names(f)
   
+  # Ensure observation column is labeled "obs", may be changed later
+  colnames(obs)[sapply(obs,class)=="numeric"] <- "obs"
   sumstat.obs <- list(data.frame(mean=mean(obs$obs,na.rm=T),
                                  min=min(obs$obs,na.rm=T),
                                  max=max(obs$obs,na.rm=T),
                                  number_of_observations=sum(!is.na(obs$obs)),
                                  missing_values=sum(is.na(obs$obs))))
-  names(sumstat.obs) <- "observations.csv"
+  names(sumstat.obs) <- "observations"
   
   # Print to R
   cat("OBSERVATIONS\n")

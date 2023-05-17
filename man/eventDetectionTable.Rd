@@ -2,9 +2,9 @@
 % Please edit documentation in R/eventDetectionTable.R
 \name{eventDetectionTable}
 \alias{eventDetectionTable}
-\title{Function for constructinga list of event detection tables.}
+\title{Function for constructing list of event detection tables.}
 \usage{
-eventDetectionTable(data, change, window)
+eventDetectionTable(data, change = -30, window = 5)
 }
 \arguments{
 \item{data}{Data object returned by the loadData function}
@@ -17,5 +17,5 @@ eventDetectionTable(data, change, window)
 Returns an event detection table
 }
 \description{
-Function for constructinga list of event detection tables.
+Function for constructing list of event detection tables.
 }
