@@ -40,3 +40,6 @@ vignettes/*.pdf
 results/detect_tablepred_power_midwales
 results/detect_tablepred_power_midwales
 results/detect_tablepred_power_northwales
+results/detect_tablemseps200
+results/detect_tablemseps400
+results/detect_tablemseps600
