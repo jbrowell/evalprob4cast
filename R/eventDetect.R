@@ -1,11 +1,12 @@
 #' Function for detecting all events in a multivariate time series
 #' 
 #' @param data Data object returned by the loadData function
-#' @param ch Flat signed change in forecasted variable
-#' @param win Time window length within which the change occurs
+#' @param change Flat signed change in forecasted variable
+#' @param window Time window length within which the change occurs
 #' @return Returns an event detection table
 #' @export
-eventDetect <- function(data,ch,win){
+
+eventDetect <- function(data,change,window){
   
   n <- length(data$TimeStamp)
   detect_table <- data
@@ -14,13 +15,13 @@ eventDetect <- function(data,ch,win){
   for(i in 1:n){
     
     # Specify forecast-window-specific subset
-    i2 <- max(which((data$TimeStamp - data$TimeStamp[i]) <= win*3600))
+    i2 <- max(which((data$TimeStamp - data$TimeStamp[i]) <= window*3600))
     evset <- data[i:i2,]
     
     # Check current forecast window for whether there is an event or not
     # (across every ensemble member + observations)
     if(dim(evset)[1]>1){
-      detect_table[i,-1] <- apply(evset[,-1],2,function(x){checkForEvent(x,ch)})
+      detect_table[i,-1] <- apply(evset[,-1],2,function(x){checkForEvent(x,change)})
     }else{
       detect_table[i,-1] <- NA
     }

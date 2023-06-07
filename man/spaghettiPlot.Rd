@@ -6,40 +6,35 @@
 \usage{
 spaghettiPlot(
   m,
+  x = NULL,
   main = "Spaghetti Plot",
   xlab = "Time",
   ylab = "Quantity",
-  xlim = 0,
-  ylim = 0,
-  dt = NULL,
   grid = T,
   col = "gray",
-  dt.type = "normal"
+  observations = NULL,
+  ...
 )
 }
 \arguments{
-\item{m}{To be written in 2024.}
+\item{m}{Ensemble forecast data}
 
-\item{main}{To be written in 2024.}
+\item{x}{Optional time stamps corresponding to rows of \code{m}.}
 
-\item{xlab}{To be written in 2024.}
+\item{main}{a main title for the plot, see also \code{?plot}.}
 
-\item{ylab}{To be written in 2024.}
+\item{xlab}{a label for the x axis.}
 
-\item{xlim}{To be written in 2024.}
+\item{ylab}{a label for the y axis.}
 
-\item{ylim}{To be written in 2024.}
+\item{grid}{Add a grid to the plot background?}
 
-\item{dt}{To be written in 2024.}
+\item{col}{Ends of the colour range for fan plot.}
 
-\item{grid}{To be written in 2024.}
-
-\item{col}{To be written in 2024.}
-
-\item{dt.type}{To be written in 2024.}
+\item{...}{Additional arguments passed to \code{plot()}}
 }
 \value{
-Does not return anything yet, but displays a quantile plot.
+Does not return anything, but displays a quantile plot.
 }
 \description{
 Produce spaghetii plot
