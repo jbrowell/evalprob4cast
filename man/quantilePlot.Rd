@@ -12,7 +12,6 @@ quantilePlot(
   ylab = "Quantity",
   grid = T,
   col = c("light blue", "dark blue"),
-  observations = NULL,
   ...
 )
 }

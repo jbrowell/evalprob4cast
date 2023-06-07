@@ -12,7 +12,6 @@ spaghettiPlot(
   ylab = "Quantity",
   grid = T,
   col = "gray",
-  observations = NULL,
   ...
 )
 }
