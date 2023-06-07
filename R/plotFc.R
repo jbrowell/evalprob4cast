@@ -25,11 +25,18 @@ plotFc <- function(data,f_id,style="fanchart",xmax=100,main="Forecast",xlab="Tim
   
   if(style=="fanchart"){
     
+<<<<<<< Updated upstream
     if(is.null(col)){
       col <- c("light blue", "dark blue")
     }
     if(main == "Forecast"){
       main <- "Forecast quantiles"
+=======
+    quantilePlot(m=m,x=x,main=main,xlab=xlab,ylab=ylab,
+                 grid=grid,col=col)
+    if(!is.null(observations)){
+      lines(x=x,y=observations)
+>>>>>>> Stashed changes
     }
     
     quantilePlot(m,main=main,xlab=xlab,ylab=ylab,
@@ -37,6 +44,7 @@ plotFc <- function(data,f_id,style="fanchart",xmax=100,main="Forecast",xlab="Tim
                  ylim=ylim,dt=dt,
                  grid=grid,col=col,dt.type=dt.type)
     
+<<<<<<< Updated upstream
   }else if(style=="spaghetti"){
     
     if(is.null(col)){
@@ -50,6 +58,13 @@ plotFc <- function(data,f_id,style="fanchart",xmax=100,main="Forecast",xlab="Tim
                  xlim=xmax,
                  ylim=ylim,dt=dt,
                  grid=grid,col=col,dt.type=dt.type)
+=======
+    spaghettiPlot(m=m,x=x,main=main,xlab=xlab,ylab=ylab,
+                  grid=grid,col=col)
+    if(!is.null(observations)){
+      lines(x=x,y=observations)
+    }
+>>>>>>> Stashed changes
     
   }else{
     cat("Invalid style, please select 'fanchart' or 'spaghetti' \n")

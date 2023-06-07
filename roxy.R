@@ -10,6 +10,7 @@ document(pkg = ".")
 
 # Install from local repository
 install(".")
+
 library(IEAwind51RP)
 
 ## Test functions...
@@ -44,8 +45,24 @@ spaghettiPlot(f1[,-c(1:2)],xlim=100)
 plotFc(fc_obs_data,1,"fanchart",xmax=300)
 plotFc(fc_obs_data,1,"spaghetti",xmax=300)
 
+<<<<<<< Updated upstream
 plot(fc_obs_data$forecasts[[1]]$m001,type="l")
 plot(fc_obs_data$obs$obs,type="l")
+=======
+quantilePlot(f1[1:100,-c(1:2)],x=f1$TimeStamp[1:100],main="North Wales - forecast and obs")
+lines(fc_obs_data$observations$TimeStamp,fc_obs_data$observations$obs)
+
+quantilePlot(f2[1:100,-c(1:2)],x=f2$TimeStamp[1:100],main="Mid Wales used for forecast of North Wales")
+lines(fc_obs_data$observations$TimeStamp,fc_obs_data$observations$obs)
+
+# PUT ON HOLD
+# plotFc(f1[1:100,-c(1:2)])
+# plotFc(f1[1:100,-c(1:2)],type = "Spaghetti")
+# 
+# plotFc(f1[1:100,-c(1:2)],type = "Quantile Plot",
+#        x=f1$TimeStamp[1:200],
+#        observations = fc_obs_data$observations)
+>>>>>>> Stashed changes
 
 forecastEvaluation(fc_obs_data)
 
@@ -74,6 +91,7 @@ for(i in 1:nfcfiles){
   f_ev[[i]] <- f_ev[[i]][!duplicated(f_ev[[i]]$TimeStamp),]
 }
 
+<<<<<<< Updated upstream
 # Compute event detection tables for all forecast series.
 for(i in 1:nfcfiles){
   dat_eval <- merge(obs_ev,f_ev[[i]])
@@ -124,3 +142,24 @@ cat("CONTINGENCY TABLE\n")
 cat("-----------------\n")
 print(contingency_table_all)
 cat("\n")
+=======
+# Compute event detection tables for all forecast series (NB: takes time at the moment!)
+detect_table_list <- eventDetectionTable(fc_obs_data_eval,change=-0.01,window=6)
+
+# Make contingency tables
+contingency_table <- contingencyTableList(detect_table_list,threshold = 4)
+
+# Print contingency table
+printContingencyTable(contingency_table)
+
+# ROC curve
+f=1
+roc <- rocCurve(detect_table_list[[f]],main=names(detect_table_list)[[f]])
+
+
+f=2
+roc <- rocCurve(detect_table_list[[f]],main=names(detect_table_list)[[f]])
+
+# Render report HTML
+rmarkdown::render("auto-report/auto-report.Rmd",output_file = "../sample_report.html")
+>>>>>>> Stashed changes

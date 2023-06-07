@@ -14,7 +14,11 @@ spaghettiPlot(
   dt = NULL,
   grid = T,
   col = "gray",
+<<<<<<< Updated upstream
   dt.type = "normal"
+=======
+  ...
+>>>>>>> Stashed changes
 )
 }
 \arguments{
