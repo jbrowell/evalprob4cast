@@ -59,3 +59,10 @@ for(i in 1:3){
   f=i
   roc <- rocCurve(detect_table_list[[f]],main=paste0("Forecast ",LETTERS[f]))
 }
+
+# Use of Brier Score (may be converted to functions later)
+probability_table <- lapply(detect_table_list,function(x){data.frame(TimeStamp=x$TimeStamp,
+                                obs=x$obs,
+                                prob=rowSums(x[,-c(1,2)])/(dim(x)[2]-2))})
+unlist(lapply(probability_table,function(x){brierscore(x$prob,x$obs)}))
+# As expected, Lanarkshire forecasts are by far the worst at predicting events from North Wales
