@@ -65,4 +65,10 @@ probability_table <- lapply(detect_table_list,function(x){data.frame(TimeStamp=x
                                 obs=x$obs,
                                 prob=rowSums(x[,-c(1,2)])/(dim(x)[2]-2))})
 unlist(lapply(probability_table,function(x){brierscore(x$prob,x$obs)}))
-# As expected, Lanarkshire forecasts are by far the worst at predicting events from North Wales
+
+# Reliability diagrams
+lapply(probability_table,function(x){as.reliabilitydiag(x$prob,x$obs)})
+
+# As expected, Lanarkshire forecasts are by far the worst at predicting events 
+# from North Wales, both according to Brier score and Reliability diagram
+
