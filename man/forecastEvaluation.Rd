@@ -4,10 +4,12 @@
 \alias{forecastEvaluation}
 \title{Forecast evaluation}
 \usage{
-forecastEvaluation(data)
+forecastEvaluation(data, by_lead_time = T)
 }
 \arguments{
 \item{data}{A list containing forecasts and observations.}
+
+\item{by_lead_time}{Logical indicator for whether forecast evaluation should be lead time-specific or not. Defaults to true.}
 }
 \value{
 A table of scores for the dataset.

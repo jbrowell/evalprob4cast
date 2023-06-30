@@ -38,7 +38,8 @@ for(i in 1:3){
 # ======================================= #
 
 # CRPS etc.
-forecastEvaluation(fc_obs_data)
+forecastEvaluation(fc_obs_data,by_lead_time = F)
+forecastEvaluation(fc_obs_data,by_lead_time = T)
 
 # Restrict data to intersecting timestamps only
 fc_obs_data_eval <- evaluationSet(fc_obs_data)
