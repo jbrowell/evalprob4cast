@@ -1,12 +1,12 @@
 #' Add together two numbers
 #'
-#' @param forecast_row A row from a forecast table containing at least TimeStamp and BaseTime.
-#' @return Lead time of a forecast row.
+#' @param forecast A forecast table or row containing at least the columns named TimeStamp and BaseTime, respectively.
+#' @return Lead times of the input forecasts.
 #' @export
-getLeadTime <- function(forecast_row) {
+getLeadTime <- function(forecast) {
   
-  lead_time <- forecast_row$TimeStamp - forecast_row$BaseTime
+  lead_time <- forecast$TimeStamp - forecast$BaseTime
   units(lead_time) <- "hours"
-  return(lead_time[[1]])
+  return(lead_time)
   
 }

@@ -4,13 +4,13 @@
 \alias{getLeadTime}
 \title{Add together two numbers}
 \usage{
-getLeadTime(forecast_row)
+getLeadTime(forecast)
 }
 \arguments{
-\item{forecast_row}{A row from a forecast table containing at least TimeStamp and BaseTime.}
+\item{forecast}{A forecast table or row containing at least the columns named TimeStamp and BaseTime, respectively.}
 }
 \value{
-Lead time of a forecast row.
+Lead times of the input forecasts.
 }
 \description{
 Add together two numbers
