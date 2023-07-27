@@ -37,12 +37,7 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
-results/detect_tablepred_power_midwales
-results/detect_tablepred_power_northwales
-results/detect_tablepred_power_lanarkshire
-results/detect_tablemseps200
-results/detect_tablemseps400
-results/detect_tablemseps600
+results/*
 
 # Mac OS specific DS_Store files
 .DS_Store
