@@ -17,6 +17,7 @@ eventDetectionTable <- function(data,change=-30,window=5){
     detect_table_list[[i]] <- detect_table[!is.na(rowMeans(detect_table[,-1])),]
     
     # Export detection table to results folder (should maybe be optional?)
+    dir.create("results",showWarnings = F) # Creating results folder if it doesn't already exist
     write.csv(detect_table_list[[i]],paste0("results/detect_table",gsub("forecast","",names(data$forecasts)[i])),row.names=F)
   }
   names(detect_table_list) <- names(data$forecasts)

@@ -19,10 +19,10 @@ contingencyTableList <- function(detect_table_list,threshold=5){
     # Prepare scores for binary classifier
     M_eval <- dim(detect_table)[2]-2
     detect_table_sum <- data.frame(obs=detect_table[,2],
-                                   forecast=apply(detect_table[,-c(1,2)],1,function(x){sum(x)/M_eval}))
+                                   forecast=apply(as.matrix(detect_table[,-c(1,2)]),1,function(x){sum(x)/M_eval}))
     
-    # Get binary table for obs vs. forecast (currently 5 positives needed for a detection)
-    detect_table_ct <- detectToBinary(detect_table_sum,threshold=5/M_eval)
+    # Get binary table for obs vs. forecast (currently by default 5 positives needed for a detection)
+    detect_table_ct <- detectToBinary(detect_table_sum,threshold=threshold/M_eval)
     
     # Make contingency table
     contingency_table[[i]] <- contingencyTable(detect_table_ct)
