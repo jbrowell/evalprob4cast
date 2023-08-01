@@ -4,14 +4,12 @@
 \alias{rocCurve}
 \title{ROC Curve}
 \usage{
-rocCurve(detect_table, threshold = 5, main = "")
+rocCurve(detect_table_sum, main = "")
 }
 \arguments{
-\item{threshold}{Required number of positive ensemble members}
+\item{detect_table_sum}{detection table with probabilities}
 
 \item{main}{title of ROC plot}
-
-\item{detect_table_list}{List of detection tables}
 }
 \value{
 Contingency table for all forecast candidates
