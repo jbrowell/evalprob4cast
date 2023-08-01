@@ -16,38 +16,62 @@ forecastEvaluation <- function(data, by_lead_time=T){
   
   if(by_lead_time){
     
+    # Logical, whether lead time is available or not
+    has_lead_time <- unlist(lapply(data$forecasts,function(x){"BaseTime" %in% names(x)}))
+    
     # All unique lead times across all forecast candidates
-    unique_lead_times <- sort(unique(unlist(lapply(f,getLeadTime))))
+    unique_lead_times <- sort(unique(unlist(lapply(f,getLeadTime))),na.last=NA)
     
     for(i in 1:nfcfiles){
       
       feval.crps[[i]] <- list()
-      fc <- f[[i]]
-      all_lead_times <- getLeadTime(fc)
-      #unique_lead_times <- sort(unique(all_lead_times))
-      for(j in 1:length(unique_lead_times)){
+      
+      if(!has_lead_time[i]){
         
-        fcu <- fc[all_lead_times==unique_lead_times[j],]
+        # Do nothing
         
-        if(dim(fcu)[1]==0){
-          feval.crps[[i]][[j]] <- NA
+      }else{
+        
+        fc <- f[[i]]
+        all_lead_times <- getLeadTime(fc)
+        
+        for(j in 1:length(unique_lead_times)){
+          
+          fcu <- fc[all_lead_times==unique_lead_times[j],]
+          
+          if(dim(fcu)[1]==0){
+            feval.crps[[i]][[j]] <- NA
+          }
+          else{
+            fcu$BaseTime <- NULL
+            dat.eval <- merge(obs,fcu)
+            crps.f <- apply(dat.eval[,-1],1,function(x){crps(x[-1],x[1])})
+            feval.crps[[i]][[j]] <- cbind(dat.eval$TimeStamp,crps.f)
+          }
+          
         }
-        else{
-          fcu$BaseTime <- NULL
-          dat.eval <- merge(obs,fcu)
-          crps.f <- apply(dat.eval[,-1],1,function(x){crps(x[-1],x[1])})
-          feval.crps[[i]][[j]] <- cbind(dat.eval$TimeStamp,crps.f)
-        }
-        
       }
       
     }
     
     scores <- lapply(feval.crps,function(i){lapply(i,function(j){mean(j[,2],na.rm=T)})})
-    scores <- t(matrix(unlist(scores),ncol=nfcfiles))
+    scores <- t(matrix(unlist(scores),ncol=sum(has_lead_time)))
     
-    score_table <- cbind(data.frame(forecast=fcnames,reference=mean(feval.ref[,2],na.rm=T)),scores)
+    score_table <- cbind(data.frame(forecast=fcnames[has_lead_time],reference=mean(feval.ref[,2],na.rm=T)),scores)
     colnames(score_table)[-c(1,2)] <- paste0("CRPS_h",unique_lead_times)
+    
+    if(sum(!has_lead_time)>0){
+      cat(paste0("\033[0;", 33, "m",
+                 "NB! The following forecast models can not be seperated by lead time:"
+                 ,"\033[0m","\n"))
+      cat(paste0("\033[0;", 33, "m",
+                 names(which(!has_lead_time))
+                 ,"\033[0m"),sep=", ")
+      #cat("Warning! The following forecast models can not be seperated by lead time:\n")
+      #cat(names(which(!has_lead_time)),sep = ", ")
+      cat("\n\n")
+    }
+    
     return(score_table)
     
   }else{

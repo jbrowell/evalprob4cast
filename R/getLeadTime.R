@@ -5,8 +5,12 @@
 #' @export
 getLeadTime <- function(forecast) {
   
-  lead_time <- forecast$TimeStamp - forecast$BaseTime
-  units(lead_time) <- "hours"
-  return(lead_time)
+  if("BaseTime" %in% names(forecast)){
+    lead_time <- forecast$TimeStamp - forecast$BaseTime
+    units(lead_time) <- "hours"
+    return(lead_time)
+  }else{
+    NA
+  }
   
 }
