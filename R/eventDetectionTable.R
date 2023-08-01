@@ -6,19 +6,32 @@
 #' @return Returns an event detection table
 #' @export
 
-eventDetectionTable <- function(data,change=-30,window=5){
+eventDetectionTable <- function(data,change=-30,window=5,export.results=F){
   
   nfcfiles <- length(data$forecasts)
   
   detect_table_list <- list()
   for(i in 1:nfcfiles){
     dat_eval <- merge(data$observations,data$forecasts[[i]])
-    detect_table <- eventDetect(dat_eval,change=change,window=window)
-    detect_table_list[[i]] <- detect_table[!is.na(rowMeans(detect_table[,-1])),]
+    detect_table <- data.frame()
+    
+    if("BaseTime" %in% names(dat_eval)){
+      detect_table <- eventDetect(subset(dat_eval,select=-BaseTime),
+                                  change=change,window=window)
+      detect_table <- cbind(dat_eval$BaseTime,detect_table)
+      colnames(detect_table)[1] <- "BaseTime"
+      detect_table <- detect_table[,c(2,1,3:dim(dat_eval)[2])] #Reorder, maybe make generic later
+    }else{
+      detect_table <- eventDetect(dat_eval,change=change,window=window)
+    }
+    
+    detect_table_list[[i]] <- detect_table[!is.na(rowMeans(Filter(is.numeric,detect_table))),]
     
     # Export detection table to results folder (should maybe be optional?)
-    dir.create("results",showWarnings = F) # Creating results folder if it doesn't already exist
-    write.csv(detect_table_list[[i]],paste0("results/detect_table",gsub("forecast","",names(data$forecasts)[i])),row.names=F)
+    if(export.results){
+      dir.create("results",showWarnings = F) # Creating results folder if it doesn't already exist
+      write.csv(detect_table_list[[i]],paste0("results/detect_table",gsub("forecast","",names(data$forecasts)[i])),row.names=F)
+    }
   }
   names(detect_table_list) <- names(data$forecasts)
   

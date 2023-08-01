@@ -38,7 +38,8 @@ for(i in 1:3){
 # ======================================= #
 
 # CRPS etc.
-forecastEvaluation(fc_obs_data)
+forecastEvaluation(fc_obs_data,by_lead_time = F)
+forecastEvaluation(fc_obs_data,by_lead_time = T)
 
 # Restrict data to intersecting timestamps only
 fc_obs_data_eval <- evaluationSet(fc_obs_data)
@@ -47,15 +48,11 @@ fc_obs_data_eval <- evaluationSet(fc_obs_data)
 detect_table_list <- eventDetectionTable(fc_obs_data_eval,change=-0.01,window=6)
 
 # Make contingency tables
-contingency_table <- contingencyTableList(detect_table_list,threshold = 5)
-
-names(contingency_table) <- c("Forecast A","Forecast B","Forecast C")
+contingency_table <- contingencyTableList(detect_table_list,threshold = 0.2)
+#names(contingency_table) <- c("Forecast A","Forecast B","Forecast C")
 
 # Print contingency table
 printContingencyTable(contingency_table)
 
 # ROC curves
-for(i in 1:3){
-  f=i
-  roc <- rocCurve(detect_table_list[[f]],main=paste0("Forecast ",LETTERS[f]))
-}
+rocCurveList(detect_table_list)

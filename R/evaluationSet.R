@@ -17,11 +17,11 @@ evaluationSet <- function(data){
   }
   
   # Construct refined dataset
-  obs_ev <- obs[obs$TimeStamp %in% ts_intersect,]
+  obs_ev <- obs[as.numeric(obs$TimeStamp) %in% ts_intersect,]
   obs_ev <- obs_ev[!duplicated(obs_ev$TimeStamp),]
   f_ev <- list()
   for(i in 1:nfcfiles){
-    f_ev[[i]] <- f[[i]][f[[i]]$TimeStamp %in% ts_intersect,]
+    f_ev[[i]] <- f[[i]][as.numeric(f[[i]]$TimeStamp) %in% ts_intersect,]
     f_ev[[i]]$BaseTime <- NULL # added
     f_ev[[i]] <- f_ev[[i]][!duplicated(f_ev[[i]]$TimeStamp),]
   }

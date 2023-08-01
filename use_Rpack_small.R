@@ -48,27 +48,25 @@ fc_obs_data_eval <- evaluationSet(fc_obs_data)
 detect_table_list <- eventDetectionTable(fc_obs_data_eval,change=-0.01,window=6)
 
 # Make contingency tables
-contingency_table <- contingencyTableList(detect_table_list,threshold = 5)
-
-names(contingency_table) <- c("Forecast A","Forecast B","Forecast C")
+contingency_table <- contingencyTableList(detect_table_list,threshold = 0.2)
+#names(contingency_table) <- c("Forecast A","Forecast B","Forecast C")
 
 # Print contingency table
 printContingencyTable(contingency_table)
 
 # ROC curves
-for(i in 1:3){
-  f=i
-  roc <- rocCurve(detect_table_list[[f]],main=paste0("Forecast ",LETTERS[f]))
-}
+rocCurveList(detect_table_list)
+
+# -- BRIER SCORES AND RELIABILITY DIAGRAMS TEMPORARILY DISABLED -- #
 
 # Use of Brier Score (may be converted to functions later)
-probability_table <- lapply(detect_table_list,function(x){data.frame(TimeStamp=x$TimeStamp,
-                                obs=x$obs,
-                                prob=rowSums(x[,-c(1,2)])/(dim(x)[2]-2))})
-unlist(lapply(probability_table,function(x){brierscore(x$prob,x$obs)}))
+#probability_table <- lapply(detect_table_list,function(x){data.frame(TimeStamp=x$TimeStamp,
+#                                obs=x$obs,
+#                                prob=rowSums(x[,-c(1,2)])/(dim(x)[2]-2))})
+#unlist(lapply(probability_table,function(x){brierscore(x$prob,x$obs)}))
 
 # Reliability diagrams
-lapply(probability_table,function(x){as.reliabilitydiag(x$prob,x$obs)})
+#lapply(probability_table,function(x){as.reliabilitydiag(x$prob,x$obs)})
 
 # As expected, Lanarkshire forecasts are by far the worst at predicting events 
 # from North Wales, both according to Brier score and Reliability diagram

@@ -4,7 +4,7 @@
 \alias{contingencyTableList}
 \title{Contingency table list}
 \usage{
-contingencyTableList(detect_table_list, threshold = 5)
+contingencyTableList(detect_table_list, threshold = 0.75)
 }
 \arguments{
 \item{detect_table_list}{List of detection tables}

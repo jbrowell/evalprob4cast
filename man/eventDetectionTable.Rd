@@ -4,7 +4,7 @@
 \alias{eventDetectionTable}
 \title{Function for constructing list of event detection tables.}
 \usage{
-eventDetectionTable(data, change = -30, window = 5)
+eventDetectionTable(data, change = -30, window = 5, export.results = F)
 }
 \arguments{
 \item{data}{Data object returned by the loadData function}
