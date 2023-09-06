@@ -22,4 +22,3 @@ reliabilityDiagramList <- function(detections,bins="default",prob=F) {
   return(result)
   
 }
-¨

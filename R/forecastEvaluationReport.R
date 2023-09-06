@@ -1,10 +1,11 @@
-#' DO NOT USE THIS YET
+#' Report generation function
 #'
 #' @param data Data set in the required format.
 #' @param dest Destination for the compiled HTML report.
 #' @return Currently nothing.
 #' @export
-forecastEvaluationReport <- function(data,dest="./",options=NULL,delete_source=T) {
+forecastEvaluationReport <- function(data,dest="./",delete_source=T,
+                                     event_change=0.1,event_window=1,contingency_threshold=0.2){
   
   # Filenames
   output_filename <- paste0(dest,"forecast_evaluation_report.html")
@@ -61,11 +62,6 @@ forecastEvaluationReport <- function(data,dest="./",options=NULL,delete_source=T
   addchunk("forecastEvaluation(data,by_lead_time = T)",echo=F,message=F)
   
   # EVENT DETECTION RELATED MATTERS
-  
-  # Parameters
-  event_change <- -0.03
-  event_window <- 6
-  contingency_threshold <- 0.2
 
   # Restrict data to intersecting timestamps only
   data_eval <- evaluationSet(data)
@@ -98,19 +94,12 @@ forecastEvaluationReport <- function(data,dest="./",options=NULL,delete_source=T
   
   # Brier scores
   addline("## Brier Score")
-  probability_table <- lapply(detect_table_list,function(x){data.frame(TimeStamp=x$TimeStamp,
-                                                                       obs=x$obs,
-                                                                       prob=rowSums(as.matrix(x[,-c(1,2)]))/(dim(x)[2]-2))})
-  addchunk("unlist(lapply(probability_table,function(x){brierscore(x$prob,x$obs)}))",echo=F)
+  probability_table <- probabilityTableList(detect_table_list)
+  addchunk("brierScoreList(probability_table,prob=T)",echo=F)
   
   # Reliability diagrams
   addline("## Reliability Diagram")
-  addchunk("lapply(probability_table,function(x){
-    suppressWarnings(as.reliabilitydiag(x$prob,x$obs,xvalues=seq(0.05,0.95,by=0.1)))
-    })
-  #",echo=F,message=F)
-  
-  # Can add ,xvalues=seq(0.05,0.95,by=0.1) after x$obs
+  addchunk("reliabilityDiagramList(probability_table,prob=T)",echo=F,message=F)
   
   # -------------------------- #
   # ----- RENDER REPORT ------ #

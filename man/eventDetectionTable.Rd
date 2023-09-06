@@ -7,14 +7,14 @@
 eventDetectionTable(data, change = -30, window = 5, export.results = F)
 }
 \arguments{
-\item{data}{Data object returned by the loadData function}
+\item{data}{Data object returned by the loadData function.}
 
-\item{change}{Flat signed change in forecasted variable}
+\item{change}{Flat signed change in forecasted variable.}
 
-\item{window}{Time window length within which the change occurs}
+\item{window}{Duration of time window within which the change occurs, given in hours.}
 }
 \value{
-Returns an event detection table
+Returns an event detection table.
 }
 \description{
 Function for constructing list of event detection tables.

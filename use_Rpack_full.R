@@ -55,7 +55,7 @@ contingency_table <- contingencyTableList(detect_table_list,threshold = 0.2)
 printContingencyTable(contingency_table)
 
 # ROC curves
-rocCurveList(detect_table_list,main)
+rocCurveList(detect_table_list)
 
 # Brier scores
 brierScoreList(detect_table_list)

@@ -2,9 +2,16 @@
 % Please edit documentation in R/forecastEvaluationReport.R
 \name{forecastEvaluationReport}
 \alias{forecastEvaluationReport}
-\title{DO NOT USE THIS YET}
+\title{Report generation function}
 \usage{
-forecastEvaluationReport(data, dest = "./", options = NULL, delete_source = T)
+forecastEvaluationReport(
+  data,
+  dest = "./",
+  delete_source = T,
+  event_change = 0.1,
+  event_window = 1,
+  contingency_threshold = 0.2
+)
 }
 \arguments{
 \item{data}{Data set in the required format.}
@@ -15,5 +22,5 @@ forecastEvaluationReport(data, dest = "./", options = NULL, delete_source = T)
 Currently nothing.
 }
 \description{
-DO NOT USE THIS YET
+Report generation function
 }
