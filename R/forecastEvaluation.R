@@ -55,19 +55,23 @@ forecastEvaluation <- function(data, by_lead_time=T){
     }
     
     scores <- lapply(feval.crps,function(i){lapply(i,function(j){mean(j[,2],na.rm=T)})})
-    scores <- t(matrix(unlist(scores),ncol=sum(has_lead_time)))
+    #scores <- t(matrix(unlist(scores),ncol=sum(has_lead_time)))
+    scores <- matrix(unlist(scores),ncol=1)
     
-    score_table <- cbind(data.frame(forecast=fcnames[has_lead_time],reference=mean(feval.ref[,2],na.rm=T)),scores)
-    colnames(score_table)[-c(1,2)] <- paste0("CRPS_h",unique_lead_times)
+    #score_table <- cbind(data.frame(forecast=fcnames[has_lead_time],reference=mean(feval.ref[,2],na.rm=T)),scores)
+    score_table <- cbind(data.frame(forecast=c(rep(fcnames[has_lead_time],each=length(unique_lead_times)),"reference"),
+                                    leadtime=c(rep(unique_lead_times,sum(has_lead_time)),NA),
+                                    CRPS=c(scores,mean(feval.ref[,2],na.rm=T))))
+    #colnames(score_table)[-c(1,2)] <- paste0("CRPS_h",unique_lead_times)
     
     if(sum(!has_lead_time)>0){
       cat(paste0("\033[0;", 33, "m",
-                 "NB! The following forecast models can not be seperated by lead time:"
+                 "NB! The following forecast models can not be separated by lead time:"
                  ,"\033[0m","\n"))
       cat(paste0("\033[0;", 33, "m",
                  names(which(!has_lead_time))
                  ,"\033[0m"),sep=", ")
-      #cat("Warning! The following forecast models can not be seperated by lead time:\n")
+      #cat("Warning! The following forecast models can not be separated by lead time:\n")
       #cat(names(which(!has_lead_time)),sep = ", ")
       cat("\n\n")
     }

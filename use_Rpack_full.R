@@ -46,13 +46,25 @@ fc_obs_data_eval <- evaluationSet(fc_obs_data)
 
 # Compute event detection tables for all forecast series (NB: takes time at the moment!)
 detect_table_list <- eventDetectionTable(fc_obs_data_eval,change=-0.01,window=6)
+names(detect_table_list) <- c("Forecast A","Forecast B","Forecast C")
 
 # Make contingency tables
 contingency_table <- contingencyTableList(detect_table_list,threshold = 0.2)
-#names(contingency_table) <- c("Forecast A","Forecast B","Forecast C")
 
 # Print contingency table
 printContingencyTable(contingency_table)
 
 # ROC curves
 rocCurveList(detect_table_list)
+
+# Brier scores
+brierScoreList(detect_table_list)
+
+# Reliability diagrams
+reliabilityDiagramList(detect_table_list)
+
+# Reliability diagrams with custom bin selection
+reliabilityDiagramList(detect_table_list,bins=seq(0.05,0.95,by=0.1))
+
+# As expected, Lanarkshire forecasts are by far the worst at predicting events 
+# from North Wales, both according to Brier score and Reliability diagram

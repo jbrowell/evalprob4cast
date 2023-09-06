@@ -54,38 +54,38 @@ f2 <- fc_obs_data$forecasts[[2]]
 quantilePlot(f2[1:100,-c(1:2)],x=f2$TimeStamp[1:100])
 lines(fc_obs_data$observations$dtm,fc_obs_data$observations$npower)
 
-# PUT ON HOLD
-# plotFc(f1[1:100,-c(1:2)])
-# plotFc(f1[1:100,-c(1:2)],type = "Spaghetti")
-# 
-# plotFc(f1[1:100,-c(1:2)],type = "Quantile Plot",
-#        x=f1$TimeStamp[1:200],
-#        observations = fc_obs_data$observations)
-
-forecastEvaluation(fc_obs_data)
 
 # ======================================= #
-# ------- EXECUTION (NEW VERSION) ------- #
+# --------- FORECAST EVALUATION --------- #
 # ======================================= #
+
+# CRPS etc.
+forecastEvaluation(fc_obs_data,by_lead_time = F)
+forecastEvaluation(fc_obs_data,by_lead_time = T)
 
 # Restrict data to intersecting timestamps only
 fc_obs_data_eval <- evaluationSet(fc_obs_data)
 
 # Compute event detection tables for all forecast series (NB: takes time at the moment!)
-detect_table_list <- eventDetectionTable(fc_obs_data_eval)
+detect_table_list <- eventDetectionTable(fc_obs_data_eval,change=-0.03,window=6)
 
 # Make contingency tables
-contingency_table <- contingencyTableList(detect_table_list)
+contingency_table <- contingencyTableList(detect_table_list,threshold = 0.2)
 
 # Print contingency table
 printContingencyTable(contingency_table)
 
-# ROC curve
-f=2
-roc <- rocCurve(detect_table_list[[f]],main=names(detect_table_list)[[f]])
+# ROC curves
+rocCurveList(detect_table_list)
 
+# Brier scores
+brierScoreList(detect_table_list)
 
+# Reliability diagrams
+reliabilityDiagramList(detect_table_list)
 
-# Render report HTML
-rmarkdown::render("auto-report/auto-report.Rmd",output_file = "../sample_report.html")
+# Reliability diagrams with custom bin selection
+reliabilityDiagramList(detect_table_list,bins=seq(0.05,0.95,by=0.1))
 
+# Try reporting
+forecastEvaluationReport(fc_obs_data,dest="~/Desktop/",delete_source = T)
