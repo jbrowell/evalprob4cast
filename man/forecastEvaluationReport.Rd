@@ -4,7 +4,7 @@
 \alias{forecastEvaluationReport}
 \title{DO NOT USE THIS YET}
 \usage{
-forecastEvaluationReport(data, dest = "./", options = NULL)
+forecastEvaluationReport(data, dest = "./", options = NULL, delete_source = T)
 }
 \arguments{
 \item{data}{Data set in the required format.}

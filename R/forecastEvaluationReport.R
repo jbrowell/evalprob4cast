@@ -106,7 +106,7 @@ forecastEvaluationReport <- function(data,dest="./",options=NULL,delete_source=T
   # Reliability diagrams
   addline("## Reliability Diagram")
   addchunk("lapply(probability_table,function(x){
-    suppressWarnings(as.reliabilitydiag(x$prob,x$obs))
+    suppressWarnings(as.reliabilitydiag(x$prob,x$obs,xvalues=seq(0.05,0.95,by=0.1)))
     })
   #",echo=F,message=F)
   

@@ -1,9 +1,9 @@
 #' Function for constructing list of event detection tables.
 #' 
-#' @param data Data object returned by the loadData function
-#' @param change Flat signed change in forecasted variable
-#' @param window Time window length within which the change occurs
-#' @return Returns an event detection table
+#' @param data Data object returned by the loadData function.
+#' @param change Flat signed change in forecasted variable.
+#' @param window Duration of time window within which the change occurs, given in hours.
+#' @return Returns an event detection table.
 #' @export
 
 eventDetectionTable <- function(data,change=-30,window=5,export.results=F){
