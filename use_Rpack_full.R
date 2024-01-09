@@ -33,16 +33,43 @@ for(i in 1:3){
   lines(fc_obs_data$observations$TimeStamp,fc_obs_data$observations$obs)
 }
 
-# ======================================= #
-# --------- FORECAST EVALUATION --------- #
-# ======================================= #
 
-# CRPS etc.
+# ======================================== #
+# ----- STANDARD FORECAST EVALUATION ----- #
+# ======================================== #
+
+# CRPS etc. (slow for large data sets)
 forecastEvaluation(fc_obs_data,by_lead_time = F)
 forecastEvaluation(fc_obs_data,by_lead_time = T)
 
 # Restrict data to intersecting timestamps only
 fc_obs_data_eval <- evaluationSet(fc_obs_data)
+
+# Individual forecast candidates and the observation set
+f1 <- as.matrix(fc_obs_data_eval$forecasts$pred_power_northwales[,-c(1)])
+f2 <- as.matrix(fc_obs_data_eval$forecasts$pred_power_midwales[,-c(1)])
+f3 <- as.matrix(fc_obs_data_eval$forecasts$pred_power_lanarkshire[,-c(1)])
+y <- fc_obs_data_eval$observations$obs
+
+# Rank histograms with (default) m+1 bins
+rankHistogram(f1,y)
+rankHistogram(f2,y)
+rankHistogram(f3,y)
+
+# ... with 10 bins
+rankHistogram(f1,y,nbins = 10)
+rankHistogram(f2,y,nbins = 10)
+rankHistogram(f3,y,nbins = 10)
+
+# ... or varying bins for e.g. the first forecast candidate
+rankHistogram(f1,y,nbins = 10)
+rankHistogram(f1,y,nbins = 20)
+rankHistogram(f1,y,nbins = 40)
+rankHistogram(f1,y,nbins = 500)
+
+# ========================================= #
+# ---- EVENT-BASED FORECAST EVALUATION ---- #
+# ========================================= #
 
 # Compute event detection tables for all forecast series (NB: takes time at the moment!)
 detect_table_list <- eventDetectionTable(fc_obs_data_eval,change=-0.01,window=6)
@@ -60,11 +87,15 @@ rocCurveList(detect_table_list)
 # Brier scores
 brierScoreList(detect_table_list)
 
-# Reliability diagrams
+# Classic reliability diagrams (default)
 reliabilityDiagramList(detect_table_list)
+# Classic reliability diagrams (custom bins)
+reliabilityDiagramList(detect_table_list,bins = seq(0.04,0.96,by=0.04))
 
-# Reliability diagrams with custom bin selection
-reliabilityDiagramList(detect_table_list,bins=seq(0.05,0.95,by=0.1))
+# CORP-based reliability diagrams
+reliabilityDiagramList(detect_table_list,method = "CORP")
+# CORP-based reliability diagrams with custom bin selection
+reliabilityDiagramList(detect_table_list,method = "CORP",bins = seq(0.05,0.95,by=0.1))
 
 # As expected, Lanarkshire forecasts are by far the worst at predicting events 
 # from North Wales, both according to Brier score and Reliability diagram

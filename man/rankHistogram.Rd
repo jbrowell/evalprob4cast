@@ -4,16 +4,27 @@
 \alias{rankHistogram}
 \title{Rank histogram of a series of ensemble forecasts w.r.t a series of observations.}
 \usage{
-rankHistogram(f, y, nbins = 0, seed = 0)
+rankHistogram(
+  f,
+  y,
+  nbins = 0,
+  seed = 0,
+  xlab = "Transformed ranks",
+  ylab = "Frequency"
+)
 }
 \arguments{
 \item{f}{Vector representing a series of ensemble forecasts.}
 
 \item{y}{The corresponding observation series.}
 
-\item{nbins}{The desired number of bins. Defaults to m+1 bins (code 0)}
+\item{nbins}{The desired number of bins. Defaults to m+1 bins (code 0).}
 
-\item{seed}{Optional seed. Defaults to 0 (random seed every time)}
+\item{seed}{Optional seed. Defaults to 0 (random seed every time).}
+
+\item{xlab}{x-axis label. Defaults to "Transformed ranks".}
+
+\item{ylab}{y-axis label. Defaults to "Frequency".}
 }
 \value{
 Rank histogram
