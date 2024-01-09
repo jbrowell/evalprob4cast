@@ -30,7 +30,7 @@ eventDetectionTable <- function(data,change=-30,window=5,export.results=F){
     # Export detection table to results folder (should maybe be optional?)
     if(export.results){
       dir.create("results",showWarnings = F) # Creating results folder if it doesn't already exist
-      write.csv(detect_table_list[[i]],paste0("results/detect_table",gsub("forecast","",names(data$forecasts)[i])),row.names=F)
+      write.csv(detect_table_list[[i]],paste0("results/detect_table",gsub("forecast","",names(data$forecasts)[i]),".csv"),row.names=F)
     }
   }
   names(detect_table_list) <- names(data$forecasts)

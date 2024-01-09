@@ -100,3 +100,18 @@ reliabilityDiagramList(detect_table_list,method = "CORP",bins = seq(0.05,0.95,by
 
 # As expected, Lanarkshire forecasts are by far the worst at predicting events 
 # from North Wales, both according to Brier score and Reliability diagram
+
+# ======================================== #
+# ------------ OTHER FEATURES ------------ #
+# ======================================== #
+
+# It is possible to export and import detection tables in the following way:
+
+# Export detection tables by setting the export.results flag to TRUE:
+detect_table_list <- eventDetectionTable(fc_obs_data_eval,change=-0.01,window=6,export.results = T)
+
+# The tables can be re-imported by specifying their path, in this case the results folder:
+imported_table_list <- importDetectionTable("./results")
+
+# Check that the exported and imported are identical:
+setequal(detect_table_list,imported_table_list)
