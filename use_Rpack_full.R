@@ -40,7 +40,9 @@ for(i in 1:3){
 
 # CRPS etc. (slow for large data sets)
 forecastEvaluation(fc_obs_data,by_lead_time = F)
-forecastEvaluation(fc_obs_data,by_lead_time = T)
+(crps_by_leadtime <- forecastEvaluation(fc_obs_data,by_lead_time = T))
+plotScoreByLeadtime(crps_by_leadtime)
+plotScoreByLeadtime(crps_by_leadtime,ylim=c(0,0.2),main="CRPS by leadtime") # Customizable
 
 # Restrict data to intersecting timestamps only
 fc_obs_data_eval <- evaluationSet(fc_obs_data)
