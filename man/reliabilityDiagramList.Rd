@@ -2,9 +2,14 @@
 % Please edit documentation in R/reliabilityDiagramList.R
 \name{reliabilityDiagramList}
 \alias{reliabilityDiagramList}
-\title{Add together two numbers}
+\title{Reliability diagrams of a list of forecast candidates}
 \usage{
-reliabilityDiagramList(detections, bins = "default", prob = F)
+reliabilityDiagramList(
+  detections,
+  bins = "default",
+  method = "classic",
+  prob = F
+)
 }
 \arguments{
 \item{detections}{A list of detections, which can be either ensemble detection tables or probability tables}
@@ -15,5 +20,5 @@ reliabilityDiagramList(detections, bins = "default", prob = F)
 hmm...
 }
 \description{
-Add together two numbers
+Reliability diagrams of a list of forecast candidates
 }
