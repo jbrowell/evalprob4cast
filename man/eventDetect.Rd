@@ -4,12 +4,14 @@
 \alias{eventDetect}
 \title{Function for detecting all events in a multivariate time series}
 \usage{
-eventDetect(data, change, window)
+eventDetect(data, change = NA, range = NA, window)
 }
 \arguments{
 \item{data}{Data object returned by the loadData function}
 
 \item{change}{Flat signed change in forecasted variable}
+
+\item{range}{?}
 
 \item{window}{Time window length within which the change occurs}
 }

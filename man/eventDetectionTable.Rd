@@ -4,12 +4,14 @@
 \alias{eventDetectionTable}
 \title{Function for constructing list of event detection tables.}
 \usage{
-eventDetectionTable(data, change = -30, window = 5, export.results = F)
+eventDetectionTable(data, change = NA, range = NA, window, export.results = F)
 }
 \arguments{
 \item{data}{Data object returned by the loadData function.}
 
 \item{change}{Flat signed change in forecasted variable.}
+
+\item{range}{?}
 
 \item{window}{Duration of time window within which the change occurs, given in hours.}
 }

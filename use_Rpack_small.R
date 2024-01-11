@@ -72,7 +72,13 @@ rankHistogram(f1,y,nbins = 500)
 # ---- EVENT-BASED FORECAST EVALUATION ---- #
 # ========================================= #
 
-# Compute event detection tables for all forecast series (NB: takes time at the moment!)
+# Compute event detection tables for all forecast series, can take some time
+# Event detection tables - select change or range, not both! Here it is range...
+detect_table_list <- eventDetectionTable(fc_obs_data_eval,range=c(0.5,1),window=6)
+plot(fc_obs_data_eval$forecasts$pred_power_northwales$w3,type="l")
+lines(detect_table_list$pred_power_northwales$w3,type="l",col="red",lty=2)
+
+# And here, event defined as a change...
 detect_table_list <- eventDetectionTable(fc_obs_data_eval,change=-0.01,window=6)
 names(detect_table_list) <- c("Forecast A","Forecast B","Forecast C")
 

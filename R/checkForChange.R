@@ -4,7 +4,7 @@
 #' @param ch Flat signed change in forecasted variable
 #' @return Boolean, 1 = event happened, 0 = event did not happen
 #' @export
-checkForEvent <- function(data,ch){
+checkForChange <- function(data,ch){
   
   # Run through all forward pairs within subset
   n <- length(data)
