@@ -7,31 +7,45 @@
 
 reliabilityDiagramList <- function(detections,bins="default",method="classic",prob=F) {
   
-  result <- 0
+  result <- list()
   probability_table <- detections
   if(!prob){
     probability_table <- probabilityTableList(detections)
   }
   
+  nfc <- length(probability_table)
+  fcnames <- names(probability_table)
+  
   if(method == "classic"){
     
     if(is.character(bins)){
-      result <- lapply(probability_table,function(x){reliabilityDiagram(x$prob,x$obs,"default")})
-    }else{
-      result <- lapply(probability_table,function(x){reliabilityDiagram(x$prob,x$obs,bins)})
+      bins = c(0.05,0.15,0.25,0.35,0.45,0.55,0.65,0.75,0.85,0.95)
     }
     
+    for(i in 1:nfc){
+      
+      p <- probability_table[[i]]
+      result[[i]] <- reliabilityDiagram(p$prob,p$obs,bins,main=fcnames[i])
+      
+    }
+    
+    names(result) <- fcnames
     return(invisible(result))
     
   }else if(method == "CORP"){
     
     if(is.character(bins)){
-      result <- suppressWarnings(lapply(probability_table,function(x){as.reliabilitydiag(x$prob,x$obs)}))
-    }else{
-      result <- suppressWarnings(lapply(probability_table,function(x){as.reliabilitydiag(x$prob,x$obs,
-                                                                                         xvalues=bins)}))
+      bins <- NULL
+    }
+      
+    for(i in 1:nfc){
+      
+      p <- probability_table[[i]]
+      result[[i]] <- suppressWarnings(as.reliabilitydiag(p$prob,p$obs,xvalues=bins))
+      
     }
     
+    names(result) <- fcnames
     return(result)
     
   }else{

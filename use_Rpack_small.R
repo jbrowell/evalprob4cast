@@ -68,6 +68,10 @@ rankHistogram(f1,y,nbins = 20)
 rankHistogram(f1,y,nbins = 40)
 rankHistogram(f1,y,nbins = 500)
 
+# ... or the entire thing at once
+rankHistogramList(fc_obs_data_eval)
+rankHistogramList(fc_obs_data_eval,nbins=20)
+
 # ========================================= #
 # ---- EVENT-BASED FORECAST EVALUATION ---- #
 # ========================================= #

@@ -9,6 +9,7 @@ rankHistogram(
   y,
   nbins = 0,
   seed = 0,
+  main = "Rank histogram",
   xlab = "Transformed ranks",
   ylab = "Frequency"
 )
@@ -21,6 +22,8 @@ rankHistogram(
 \item{nbins}{The desired number of bins. Defaults to m+1 bins (code 0).}
 
 \item{seed}{Optional seed. Defaults to 0 (random seed every time).}
+
+\item{main}{Title of the histogram.}
 
 \item{xlab}{x-axis label. Defaults to "Transformed ranks".}
 

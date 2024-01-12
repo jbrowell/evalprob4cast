@@ -4,12 +4,13 @@
 #' @param y The corresponding observation series.
 #' @param nbins The desired number of bins. Defaults to m+1 bins (code 0).
 #' @param seed Optional seed. Defaults to 0 (random seed every time).
+#' @param main Title of the histogram.
 #' @param xlab x-axis label. Defaults to "Transformed ranks".
 #' @param ylab y-axis label. Defaults to "Frequency".
 #' @return Rank histogram
 #' @export
 
-rankHistogram <- function(f,y,nbins=0,seed=0,xlab="Transformed ranks",ylab="Frequency"){
+rankHistogram <- function(f,y,nbins=0,seed=0,main="Rank histogram",xlab="Transformed ranks",ylab="Frequency"){
   
   m <- dim(f)[2]
   if(nbins==0){
@@ -30,7 +31,7 @@ rankHistogram <- function(f,y,nbins=0,seed=0,xlab="Transformed ranks",ylab="Freq
   }
   
   r_transformed <- (r - 1 + runif(length(r))) / (m+1)
-  rhist <- hist(r_transformed,breaks=nbins,xlab=xlab,ylab=ylab)
+  rhist <- hist(r_transformed,breaks=nbins,main=main,xlab=xlab,ylab=ylab)
   
   return(invisible(rhist))
   
