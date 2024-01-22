@@ -41,9 +41,14 @@ summaryStats <- function(data){
   cat("\n\nFORECASTS\n")
   cat("---------\n")
   for(i in 1:nfcfiles){
-    print(head(f[[i]][,1:c(min(4,dim(f[[i]])[2]))]))
+    cat(names(f)[i])
+    cat("\n")
+    print(head(f[[i]][,1:c(min(5,dim(f[[i]])[2]))]))
+    cat("\n")
   }
   cat("\n")
+  cat("SUMMARY\n")
+  cat("-------\n")
   print(sumstat.obs)
   print(sumstat.forecList)
     

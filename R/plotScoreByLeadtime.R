@@ -24,11 +24,12 @@ plotScoreByLeadtime <- function(scoretable,main="Score by leadtime",xlab="Leadti
   ncol <- dim(x)[2]
   
   # Plot
-  plot(0,0,type="n",xlim=xlim,ylim=ylim,xlab=xlab,ylab=ylab,main=main)
+  plot(0,0,type="n",xlim=xlim,ylim=ylim,xlab=xlab,ylab=ylab,main=main,xaxt="n")
   for(i in 2:ncol){
     lines(x[,1],x[,i],col=i,lwd=2)
     points(x[,1],x[,i],col=i,lwd=2,pch=16)
   }
   legend("topleft",legend=colnames(x)[-1],col=2:ncol,lty=1,lwd=2)
+  axis(1, at = unique(scoretable$leadtime))
   
 }

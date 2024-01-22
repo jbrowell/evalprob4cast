@@ -41,7 +41,7 @@ for(i in 1:3){
 forecastEvaluation(fc_obs_data,by_lead_time = F)
 (crps_by_leadtime <- forecastEvaluation(fc_obs_data,by_lead_time = T))
 plotScoreByLeadtime(crps_by_leadtime)
-plotScoreByLeadtime(crps_by_leadtime,ylim=c(0,0.2),main="CRPS by leadtime") # Customizable
+plotScoreByLeadtime(crps_by_leadtime, ylim=c(0,0.2), main="CRPS by leadtime") # Customizable
 
 # Restrict data to intersecting timestamps only
 fc_obs_data_eval <- evaluationSet(fc_obs_data)
