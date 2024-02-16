@@ -1,6 +1,10 @@
 # RP-RES-forecast-evaluation
 Implementations of recommended practice for renewable power forecast evaluation.
 
+## TO-ADD to the readme file
+- Installation instructions, including: list of dependencies (e.g. ggplot). Which format the supplied data has to be in.
+- Simple examples of use to get people started.
+
 ## Suggestions for functionality:
 
 Notes from IEA Task meeting on 19-May-2023

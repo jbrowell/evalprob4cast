@@ -6,7 +6,7 @@
 #' @return a list of all the imported tables.
 #' @export
 
-importDetectionTable <- function(path,tz="UTC"){
+import_detection_table <- function(path,tz="UTC"){
   
   files <- list.files(path)
   n <- length(files)
