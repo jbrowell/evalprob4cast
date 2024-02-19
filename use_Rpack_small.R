@@ -29,7 +29,7 @@ summary_stats(fc_obs_data)
 ti <- 1:100
 for(i in 1:3){
   f <- fc_obs_data$forecasts[[i]]
-  quantilePlot(f[ti,-c(1:2)],x=f$TimeStamp[ti],main=paste0("Forecast ",LETTERS[i]),ylab = "Normalized Wind Power",ylim=c(0,1))
+  plot_quantiles(f[ti,-c(1:2)],x=f$TimeStamp[ti],main=paste0("Forecast ",LETTERS[i]),ylab = "Normalized Wind Power",ylim=c(0,1))
   lines(fc_obs_data$observations$TimeStamp,fc_obs_data$observations$obs)
 }
 
@@ -38,8 +38,8 @@ for(i in 1:3){
 # ======================================== #
 
 # CRPS etc.
-forecastEvaluation(fc_obs_data,by_lead_time = F)
-(crps_by_leadtime <- forecastEvaluation(fc_obs_data,by_lead_time = T))
+evaluate_marginal_distribution(fc_obs_data,by_lead_time = F)
+(crps_by_leadtime <- evaluate_marginal_distribution(fc_obs_data,by_lead_time = T))
 plot_score_by_leadtime(crps_by_leadtime)
 plot_score_by_leadtime(crps_by_leadtime, ylim=c(0,0.2), main="CRPS by leadtime") # Customizable
 

@@ -1,4 +1,4 @@
-#' Produce spaghetii plot
+#' Produce scenario / spaghetti plot
 #' 
 #' @param m Ensemble forecast data
 #' @param x Optional time stamps corresponding to rows of \code{m}.
@@ -10,7 +10,7 @@
 #' @param ... Additional arguments passed to \code{plot()}
 #' @return Does not return anything, but displays a quantile plot.
 #' @export
-spaghettiPlot <- function(m,x=NULL,main="Spaghetti Plot",xlab="Time",ylab="Quantity",
+plot_scenarios <- function(m,x=NULL,main="Spaghetti Plot",xlab="Time",ylab="Quantity",
                           grid=T,col="gray",...){
   
   # Identical for quanplot and spagplot

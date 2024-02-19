@@ -4,7 +4,7 @@
 #' @param by_lead_time Logical indicator for whether forecast evaluation should be lead time-specific or not. Defaults to true.
 #' @return A table of scores for the dataset.
 #' @export
-forecastEvaluation <- function(data, by_lead_time=T){
+evaluate_marginal_distribution <- function(data, by_lead_time=T){
   
   f <- data$forecasts
   obs <- data$observations
@@ -20,7 +20,7 @@ forecastEvaluation <- function(data, by_lead_time=T){
     has_lead_time <- unlist(lapply(data$forecasts,function(x){"BaseTime" %in% names(x)}))
     
     # All unique lead times across all forecast candidates
-    unique_lead_times <- sort(unique(unlist(lapply(f,getLeadTime))),na.last=NA)
+    unique_lead_times <- sort(unique(unlist(lapply(f,get_lead_time))),na.last=NA)
     
     for(i in 1:nfcfiles){
       
@@ -33,7 +33,7 @@ forecastEvaluation <- function(data, by_lead_time=T){
       }else{
         
         fc <- f[[i]]
-        all_lead_times <- getLeadTime(fc)
+        all_lead_times <- get_lead_time(fc)
         
         for(j in 1:length(unique_lead_times)){
           

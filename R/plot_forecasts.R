@@ -1,4 +1,4 @@
-#' Plot forecast
+#' Plot probabilistic forecasts
 #' 
 #' @param m Ensemble forecast data
 #' @param x Optional time stamps corresponding to rows of \code{m}.
@@ -10,18 +10,18 @@
 #' @param ... Additional arguments passed to \code{plot()}
 #' @return Does not return anything, but displays a quantile plot.
 #' @export
-plotFc <- function(m,x=NULL,type="Quantile Plot",main=type,xlab="Time",ylab="Quantity",
+plot_forecasts <- function(m,x=NULL,type="Quantile Plot",main=type,xlab="Time",ylab="Quantity",
                    grid=T,observations=NULL,
                    col=if(type %in% c("Quantile Plot","Fan Plot")){c("light blue", "dark blue")}else{"gray"}){
   
   if(type %in% c("Quantile Plot","Fan Plot")){
     
-    quantilePlot(m=m,x=x,main=main,xlab=xlab,ylab=ylab,
+    plot_quantiles(m=m,x=x,main=main,xlab=xlab,ylab=ylab,
                  grid=grid,col=col)
     
-  }else if(type=="Spaghetti"){
+  }else if(type %in% c("Quantile Plot","Fan Plot")){
     
-    spaghettiPlot(m=m,x=x,main=main,xlab=xlab,ylab=ylab,
+    plot_scenarios(m=m,x=x,main=main,xlab=xlab,ylab=ylab,
                   grid=grid,col=col)
     
   }else{

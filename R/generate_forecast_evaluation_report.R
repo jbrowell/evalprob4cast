@@ -4,7 +4,7 @@
 #' @param dest Destination for the compiled HTML report.
 #' @return Currently nothing.
 #' @export
-forecastEvaluationReport <- function(data,dest="./",delete_source=T,
+generate_forecast_evaluation_report <- function(data,dest="./",delete_source=T,
                                      event_change=0.1,event_window=1,contingency_threshold=0.2){
   
   # Filenames
@@ -38,7 +38,7 @@ forecastEvaluationReport <- function(data,dest="./",delete_source=T,
   
   # Summary statistics
   addline("## Summary Statistics")
-  addchunk("summaryStats(data)",echo = F)
+  addchunk("summary_stats(data)",echo = F)
   
   # Visualized forecasts
   addline("## Visualized Forecasts")
@@ -64,15 +64,15 @@ forecastEvaluationReport <- function(data,dest="./",delete_source=T,
   # EVENT DETECTION RELATED MATTERS
 
   # Restrict data to intersecting timestamps only
-  data_eval <- evaluationSet(data)
+  data_eval <- make_evaluation_subset(data)
   
   # Compute event detection tables for all forecast series (NB: takes time at the moment!)
-  detect_table_list <- eventDetectionTable(data_eval,
+  detect_table_list <- event_detection_table(data_eval,
                                            change=event_change,
                                            window=event_window)
   
   # Make contingency tables
-  contingency_table <- contingencyTableList(detect_table_list,threshold = contingency_threshold)
+  contingency_table <- contingency_table_list(detect_table_list,threshold = contingency_threshold)
   
   # Print contingency table
   addline("## Contingency Table")
@@ -82,24 +82,24 @@ forecastEvaluationReport <- function(data,dest="./",delete_source=T,
   BR()
   addline(paste0("Threshold = ",contingency_threshold))
   BR()
-  addchunk("printContingencyTable(contingency_table)",echo=F)
+  addchunk("print_contingency_table(contingency_table)",echo=F)
   
   # ROC curves
   addline("## ROC Curve")
   addline("```{r, echo=F,message=F,results='hide'}")
-  addline("rocCurveList(detect_table_list)")
+  addline("roc_curve_list(detect_table_list)")
   addline("```\n")
   
   #addchunk("rocCurveList(detect_table_list)",echo=F,message=F)
   
   # Brier scores
   addline("## Brier Score")
-  probability_table <- probabilityTableList(detect_table_list)
-  addchunk("brierScoreList(probability_table,prob=T)",echo=F)
+  probability_table <- probability_table_list(detect_table_list)
+  addchunk("brier_score_list(probability_table,prob=T)",echo=F)
   
   # Reliability diagrams
   addline("## Reliability Diagram")
-  addchunk("reliabilityDiagramList(probability_table,prob=T)",echo=F,message=F)
+  addchunk("reliability_diagram_list(probability_table,prob=T)",echo=F,message=F)
   
   # -------------------------- #
   # ----- RENDER REPORT ------ #

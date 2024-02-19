@@ -3,7 +3,7 @@
 #' @param dir A directory containing forecast and observation data.
 #' @return A list with two elements. The first element contains forecast data as a list, and the second contains observations.
 #' @export
-loadData <- function(path,timeformat_f="default",timeformat_obs="default",
+load_forecast_data <- function(path,timeformat_f="default",timeformat_obs="default",
                      timezone_f="UTC",timezone_obs="UTC"){
   
   filelist <- list.files(path)

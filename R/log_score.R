@@ -5,7 +5,7 @@
 #' @return Logarithmic score (LogS) of f and y.
 #' @export
 
-logs <- function(f,y){
+log_score <- function(f,y){
   
   -log(approxfun(density(f))(y))
   

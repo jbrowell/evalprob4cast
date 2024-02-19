@@ -10,7 +10,7 @@
 #' @param ... Additional arguments passed to \code{plot()}
 #' @return Does not return anything, but displays a quantile plot.
 #' @export
-quantilePlot <- function(m,x=NULL,main="Quantile Plot",xlab="Time",ylab="Quantity",
+plot_quantiles <- function(m,x=NULL,main="Quantile Plot",xlab="Time",ylab="Quantity",
                      grid=T,col=c("light blue", "dark blue"),...){
   
   # Prepare data for plotting

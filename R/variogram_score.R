@@ -6,7 +6,7 @@
 #' @return Variogram score (VarS) of f and y.
 #' @export
 
-vars <- function(f, y, p){
+variogram_score <- function(f, y, p){
   
   n <- dim(f)[2] # Size of ensemble
   d <- dim(f)[1] # Dimension
