@@ -3,18 +3,28 @@ Implementation of Recommended Practices (reference) for renewable power forecast
 
 ## Installation instructions
 
-You can install the package by copying the command below into `R`.
-
+### Option 1: Install from GitHub
+You can install the package by copying the command below into `R`. You'll need to generate and use a personal `auth_token` as this is still a private repository.
 ``` r
-remotes::install_github(repo="jbrowell/RP-RES-forecast-evaluation", dependencies=TRUE)
+remotes::install_github(repo="jbrowell/RP-RES-forecast-evaluation", dependencies=TRUE, auth_token)
 ```
-
 Note that the `remotes` package is required for installation. If it is not installed in your system, install it by running:
-
 ``` r
 install.packages("remotes")
 ```
 
+### Option 2: Clone and install
+Alternatively, you can clone this repository and install the package from your local copy. This might be most convenient for installing spcific versions on a branch, for example.
+```r
+devtools::install(PackagePath)
+```
+Note that the `devtools` package is required for installation. If it is not installed in your system, install it by running:
+```r
+install.packages("devtools")
+```
+
+
+### Load the package for use
 Now the package can be loaded and used:
 ``` r
 library(IEAwind51)
