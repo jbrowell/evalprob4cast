@@ -4,7 +4,14 @@
 \alias{roc_curve}
 \title{Produce a ROC curve for}
 \usage{
-roc_curve(detect_table_prob, main = "")
+roc_curve(
+  detect_table_prob,
+  main = "ROC curve",
+  col.curve = "black",
+  col.auc = "light gray",
+  xlab = "False positive rate",
+  ylab = "True positive rate"
+)
 }
 \arguments{
 \item{detect_table_prob}{detection table with event probabilities}

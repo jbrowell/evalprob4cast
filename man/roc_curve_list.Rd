@@ -4,7 +4,14 @@
 \alias{roc_curve_list}
 \title{Produce ROC curves for every forecast candidate in an evaluation set}
 \usage{
-roc_curve_list(detect_table_list, main = "")
+roc_curve_list(
+  detect_table_list,
+  main = NA,
+  col.curve = "black",
+  col.auc = "light gray",
+  xlab = "False positive rate",
+  ylab = "True positive rate"
+)
 }
 \arguments{
 \item{detect_table_list}{List of detection tables}

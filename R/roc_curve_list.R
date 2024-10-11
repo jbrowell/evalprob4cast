@@ -5,12 +5,18 @@
 #' @return Contingency table for all forecast candidates
 #' @export
 
-roc_curve_list <- function(detect_table_list, main=""){
+roc_curve_list <- function(detect_table_list, main=NA, col.curve="black", col.auc="light gray", xlab="False positive rate", ylab="True positive rate"){
   
   # Works only if it is a list maybe
   nfcfiles <- length(detect_table_list)
   
   list_of_roc_curves <- list()
+  
+  if(is.na(main)){
+    main = names(detect_table_list)
+  }else{
+    main = rep(main, nfcfiles)
+  }
   
   for(i in 1:nfcfiles){
     
@@ -22,10 +28,11 @@ roc_curve_list <- function(detect_table_list, main=""){
                                    forecast=apply(as.matrix(detect_table[,-1]), 1, function(x){sum(x)/M_eval}))
     
     # Save to list
-    list_of_roc_curves[[i]] <- roc_curve(detect_table_prob, main=names(detect_table_list)[i])
+    list_of_roc_curves[[i]] <- roc_curve(detect_table_prob, main = main[i], col.curve = col.curve, col.auc = col.auc, xlab = xlab, ylab = ylab)
+    names(list_of_roc_curves)[i] <- names(detect_table_list)[i]
     
   }
   
-  return(list_of_roc_curves)
+  return(invisible(list_of_roc_curves))
   
 }

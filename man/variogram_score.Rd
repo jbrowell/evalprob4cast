@@ -4,7 +4,14 @@
 \alias{variogram_score}
 \title{VarS of a multivariate probabilistic forecast w.r.t a vector of observations.}
 \usage{
-variogram_score(f, y, p)
+variogram_score(
+  f,
+  y,
+  p,
+  weights = function(i, j) {
+     1/abs(i - j)
+ }
+)
 }
 \arguments{
 \item{f}{Vector representing a probabilistic forecast.}
@@ -12,6 +19,8 @@ variogram_score(f, y, p)
 \item{y}{The corresponding observation.}
 
 \item{p}{The order. Defaults to 0.5.}
+
+\item{weights}{Function for the weights of the (i,j)-pairs. Defaults to 1/|i-j|.}
 }
 \value{
 Variogram score (VarS) of f and y.
