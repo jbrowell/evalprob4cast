@@ -28,7 +28,7 @@ reliability_diagram <- function(pred_prob,binary_obs,bins="default",main="Reliab
   ns2 <- (xp[2] + cli) / 2 # "No skill" right left endpoint
   
   # Plot
-  invisible(par(mar=c(3.5,3.2,2,1)+0.1,mgp=c(1.9,0.7,0)))
+  invisible(par(mar=c(3.5,3.2,2.5,1)+0.1,mgp=c(1.9,0.7,0)))
   plot(rel,type="n",main=main,xlab=xlab,ylab=ylab,xlim=c(0,1),ylim=c(0,1))
   polygon(c(0,cli,cli,0),c(0,0,cli,ns1),col="light gray",border = NA)
   polygon(c(cli,1,1,cli),c(cli,ns2,1,1),col="light gray",border = NA)
