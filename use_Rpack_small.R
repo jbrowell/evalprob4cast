@@ -125,3 +125,9 @@ imported_table_list <- import_detection_table("./results")
 
 # Check that the exported and imported are identical:
 setequal(detect_table_list,imported_table_list)
+
+# ======================================== #
+# ------------ GENERATE REPORT ----------- #
+# ======================================== #
+
+generate_forecast_evaluation_report(fc_obs_data, event_change = -0.01, event_window = 6)
