@@ -1,4 +1,4 @@
-#' Produce a reliability diagram
+#' Produce a reliability diagram.
 #'
 #' @param pred_prob a vector of predicted probabilities.
 #' @param binary_obs a vector of binary observations.

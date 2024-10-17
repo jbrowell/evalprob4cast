@@ -37,20 +37,20 @@ summary_stats <- function(data){
   # Print to R
   cat("OBSERVATIONS\n")
   cat("------------\n")
-  print(head(obs))
+  print(head(obs), row.names = F)
   cat("\n\nFORECASTS\n")
   cat("---------\n")
   for(i in 1:nfcfiles){
     cat(names(f)[i])
     cat("\n")
-    print(head(f[[i]][,1:c(min(5,dim(f[[i]])[2]))]))
+    print(head(f[[i]][,1:c(min(5,dim(f[[i]])[2]))]), row.names = F)
     cat("\n")
   }
   cat("\n")
   cat("SUMMARY\n")
   cat("-------\n")
-  print(sumstat.obs)
-  print(sumstat.forecList)
+  print(sumstat.obs, row.names = F)
+  print(sumstat.forecList, row.names = F)
   
   return(invisible(NULL))
     
