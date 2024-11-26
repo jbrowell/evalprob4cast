@@ -12,6 +12,13 @@
 
 rank_histogram <- function(f,y,nbins=0,seed=0,main="Rank histogram",xlab="Transformed ranks",ylab="Frequency"){
   
+  # If a data frame has been submitted, remove time columns and convert to matrix
+  if(class(f)[1] == "data.frame"){
+    f$TimeStamp <- NULL
+    f$BaseTime <- NULL
+    f <- as.matrix(f)
+  }
+  
   m <- dim(f)[2]
   if(nbins==0){
     nbins <- m + 1
