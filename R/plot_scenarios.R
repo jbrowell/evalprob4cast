@@ -20,7 +20,7 @@ plot_scenarios <- function(m,x=NULL,main="Spaghetti Plot",xlab="Time",ylab="Quan
   }
   
   
-  plot(x=range(x),y=c(0,max(m)),
+  plot(x=range(x),y=range(m),
        main=main,xlab=xlab,ylab=ylab,
        type="n",...)#,cex.main=2,cex.lab=1.4,cex.axis=1.2)
 
