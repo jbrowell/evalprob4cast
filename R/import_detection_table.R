@@ -20,6 +20,9 @@ import_detection_table <- function(path,tz="UTC"){
   for(i in 1:n){
     x <- read.table(paste0(path,"/",files[i]),sep=",",header=T,stringsAsFactors = F)
     x$TimeStamp <- as.POSIXct(x$TimeStamp,tz=tz)
+    if("BaseTime" %in% names(x)){
+      x$BaseTime <- as.POSIXct(x$BaseTime,tz=tz)
+    }
     result[[i]] <- x
     names(result)[i] <- gsub("detect_table","",gsub(".csv","",files[i]))
   }

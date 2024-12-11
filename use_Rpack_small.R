@@ -26,12 +26,16 @@ rm(sample_may23_small)
 summary_stats(fc_obs_data)
 
 # Plot
-ti <- 1:100
-for(i in 1:3){
-  f <- fc_obs_data$forecasts[[i]]
-  plot_quantiles(f[ti,-c(1:2)],x=f$TimeStamp[ti],main=paste0("Forecast ",LETTERS[i]),ylab = "Normalized Wind Power",ylim=c(0,1))
-  lines(fc_obs_data$observations$TimeStamp,fc_obs_data$observations$obs)
-}
+plot_observations(fc_obs_data$observations)
+plot_observations(fc_obs_data$observations, all=T)
+plot_forecasts(fc_obs_data$forecasts$pred_power_northwales)
+lines(fc_obs_data$observations, lwd=1)
+
+plot_forecasts(fc_obs_data$forecasts$pred_power_midwales)
+plot_forecasts(fc_obs_data$forecasts$pred_power_lanarkshire)
+plot_forecasts(fc_obs_data$forecasts$pred_power_northwales, all = T)
+plot_forecasts(fc_obs_data$forecasts$pred_power_midwales, all = T)
+plot_forecasts(fc_obs_data$forecasts$pred_power_lanarkshire, all = T)
 
 # ======================================== #
 # ----- STANDARD FORECAST EVALUATION ----- #

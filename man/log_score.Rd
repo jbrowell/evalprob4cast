@@ -7,9 +7,9 @@
 log_score(f, y)
 }
 \arguments{
-\item{y}{The corresponding observation.}
+\item{f}{Vector representing a probabilistic forecast.}
 
-\item{sim}{Vector representing a probabilistic forecast.}
+\item{y}{The corresponding observation.}
 }
 \value{
 Logarithmic score (LogS) of f and y.

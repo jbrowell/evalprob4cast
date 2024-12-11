@@ -2,7 +2,7 @@
 % Please edit documentation in R/reliability_diagram.R
 \name{reliability_diagram}
 \alias{reliability_diagram}
-\title{Produce a reliability diagram}
+\title{Produce a reliability diagram.}
 \usage{
 reliability_diagram(
   pred_prob,
@@ -30,5 +30,5 @@ reliability_diagram(
 a reliability diagram produced from the input data.
 }
 \description{
-Produce a reliability diagram
+Produce a reliability diagram.
 }
