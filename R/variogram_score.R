@@ -1,6 +1,6 @@
 #' VarS of a multivariate probabilistic forecast w.r.t a vector of observations.
 #'
-#' @param f Vector representing a probabilistic forecast.
+#' @param f A matrix representing a multivariate probabilistic forecast. The row size is equal to the number of ensemble members, and the column size represents the dimension.
 #' @param y The corresponding observation.
 #' @param p The order. Defaults to 0.5.
 #' @param weights Function for the weights of the (i,j)-pairs. Defaults to 1/|i-j|.

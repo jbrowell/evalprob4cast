@@ -8,11 +8,14 @@ plot_forecasts(
   m,
   x = NULL,
   type = "Quantile Plot",
+  grid = F,
+  all = F,
+  numforec = 100,
+  by = "default",
+  lead = 1,
   main = type,
   xlab = "Time",
   ylab = "Quantity",
-  grid = T,
-  observations = NULL,
   col = if (type \%in\% c("Quantile Plot", "Fan Plot")) {
      c("light blue",
     "dark blue")
@@ -26,13 +29,13 @@ plot_forecasts(
 
 \item{x}{Optional time stamps corresponding to rows of \code{m}.}
 
+\item{grid}{Add a grid to the plot background?}
+
 \item{main}{a main title for the plot, see also \code{?plot}.}
 
 \item{xlab}{a label for the x axis.}
 
 \item{ylab}{a label for the y axis.}
-
-\item{grid}{Add a grid to the plot background?}
 
 \item{col}{Ends of the colour range for fan plot.}
 

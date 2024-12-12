@@ -14,7 +14,7 @@ variogram_score(
 )
 }
 \arguments{
-\item{f}{Vector representing a probabilistic forecast.}
+\item{f}{A matrix representing a multivariate probabilistic forecast. The row size is equal to the number of ensemble members, and the column size represents the dimension.}
 
 \item{y}{The corresponding observation.}
 

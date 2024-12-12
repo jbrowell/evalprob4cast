@@ -35,10 +35,14 @@ plot_quantiles <- function(m,x=NULL,main="Quantile Plot",xlab="Time",ylab="Quant
   }
   
   # Add fan plot
-  tiletot <- dim(tile)[1]
-  for(i in 1:(tiletot/2 - 1)){
-    polygon(x = c(x,rev(x)),y = c(tile[i,],rev(tile[tiletot-i,])),
-            col=colfunc(tiletot/2)[i],border=F)
+  if(dim(m)[2] > 1){
+    tiletot <- dim(tile)[1]
+    for(i in 1:(tiletot/2 - 1)){
+      polygon(x = c(x,rev(x)),y = c(tile[i,],rev(tile[tiletot-i,])),
+              col=colfunc(tiletot/2)[i],border=F)
+    }
+  }else{
+    lines(x, m[,1], lwd=2, col=col[2])
   }
   
 }

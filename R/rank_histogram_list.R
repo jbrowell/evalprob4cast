@@ -22,8 +22,8 @@ rank_histogram_list <- function(data,nbins=0,seed=0,xlab="Transformed ranks",yla
     
     fc <- f[[i]]
     fc$BaseTime <- NULL
-    dat.eval <- merge(obs,fc)
-    result[[i]] <- rank_histogram(as.matrix(dat.eval[-c(1,2)]),dat.eval$obs,
+    dat_eval <- merge(obs,fc)
+    result[[i]] <- rank_histogram(as.matrix(dat_eval[-c(1,2)]),dat_eval$obs,
                   nbins,seed,fcnames[i],xlab,ylab)
     
   }
