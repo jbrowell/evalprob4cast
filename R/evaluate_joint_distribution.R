@@ -91,7 +91,6 @@ evaluate_joint_distribution <- function(data, by_base_time=T, p=0.5){
       fc <- f[[i]]
       fc$BaseTime <- NULL
       dat.eval <- merge(obs,fc)
-      dat.eval <- dat.eval[1:25,]
       vars.f <- variogram_score(dat.eval[,-c(1,2)], dat.eval$obs, p=p)
       feval.vars[[i]] <- c(vars.f,dim(dat.eval)[1])
     }

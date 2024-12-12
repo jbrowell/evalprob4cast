@@ -11,7 +11,8 @@ plot_variogram_scores(
   ylab = "VarS",
   xlim = "default",
   ylim = "default",
-  legend = T
+  legend = T,
+  legend_pos = "topleft"
 )
 }
 \arguments{

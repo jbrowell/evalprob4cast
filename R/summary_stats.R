@@ -13,8 +13,11 @@ summary_stats <- function(data){
   
   for(i in 1:nfcfiles){
     fc <- f[[i]]
-    # Only consider numerical columns for summary stats
-    fc[,sapply(fc,class)!="numeric"] <- NULL
+    # Only consider numerical columns for summary stats - now obsolete, just removed named columns
+    # fc[,sapply(fc,class)!="numeric"] <- NULL
+    fc$TimeStamp <- NULL
+    fc$BaseTime <- NULL
+    
     fc <- as.matrix(fc)
     sumstat.forecList[[i]] <- data.frame(mean=mean(fc,na.rm=T),
                                          min=min(fc,na.rm=T),

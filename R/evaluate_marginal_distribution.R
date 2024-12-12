@@ -18,6 +18,12 @@ evaluate_marginal_distribution <- function(data, by_lead_time=T){
     
     # Logical, whether lead time is available or not
     has_lead_time <- unlist(lapply(data$forecasts,function(x){"BaseTime" %in% names(x)}))
+    if(sum(has_lead_time) == 0){
+      cat(paste0("\033[0;", 33, "m",
+                 "No forecast data with lead time found, please consider setting by_lead_time=F"
+                 ,"\033[0m","\n"))
+      return(NULL)
+    }
     
     # All unique lead times across all forecast candidates
     unique_lead_times <- sort(unique(unlist(lapply(f,get_lead_time))),na.last=NA)

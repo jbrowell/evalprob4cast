@@ -7,10 +7,12 @@
 plot_score_by_leadtime(
   scoretable,
   main = "Score by leadtime",
-  xlab = "Leadtime",
+  xlab = "Lead time",
   ylab = "Score",
   xlim = "default",
-  ylim = "default"
+  ylim = "default",
+  legend = T,
+  legend_pos = "topleft"
 )
 }
 \arguments{
