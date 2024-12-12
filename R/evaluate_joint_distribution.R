@@ -1,10 +1,12 @@
 #' Forecast evaluation of the joint distribution using the variogram score
 #'
 #' @param data A list containing forecasts and observations.
+#' @param p Order of the variogram score. Defaults to 0.5.
 #' @param by_base_time Logical indicator for whether forecast evaluation should be base time-specific or not. Defaults to true.
+#' @param aggregate only applicable if by_base_time = TRUE.
 #' @return A table of scores for the dataset.
 #' @export
-evaluate_joint_distribution <- function(data, by_base_time=T, p=0.5){
+evaluate_joint_distribution <- function(data, p=0.5, by_base_time=T, aggregate=F){
   
   f <- data$forecasts
   obs <- data$observations
@@ -65,11 +67,22 @@ evaluate_joint_distribution <- function(data, by_base_time=T, p=0.5){
     dimensions <- matrix(unlist(lapply(feval.vars,function(i){i$dimension})), ncol=1)
     
     #score_table <- cbind(data.frame(forecast=fcnames[has_lead_time],reference=mean(feval.ref[,2],na.rm=T)),scores)
-    score_table <- cbind(data.frame(forecast=c(rep(fcnames[has_base_time],each=length(unique_base_times)),"reference"),
-                                    basetime=c(rep(unique_base_times,sum(has_base_time)),NA),
-                                    VarS=c(scores,NA),
-                                    dimension=c(dimensions,NA)))
+    score_table <- cbind(data.frame(forecast=c(rep(fcnames[has_base_time],each=length(unique_base_times))),
+                                    basetime=c(rep(unique_base_times,sum(has_base_time))),
+                                    VarS=c(scores),
+                                    dimension=c(dimensions)))
     #colnames(score_table)[-c(1,2)] <- paste0("CRPS_h",unique_lead_times)
+    if(aggregate == T){
+      
+      max_dim <- max(score_table$dimension,na.rm=T)
+      score_table <- score_table[which(score_table$dimension == max_dim),]
+      score_table$dimension <- NULL
+      
+      x <- reshape(subset(score_table,forecast!="reference"), direction="wide", idvar="basetime", timevar="forecast")
+      score_table <- data.frame(forecast = fcnames,VarS = colMeans(x[,-1]),dimension = max_dim)
+      row.names(score_table) <- NULL
+      
+    }
     
     if(sum(!has_base_time)>0){
       cat(paste0("\033[0;", 33, "m",
@@ -83,8 +96,6 @@ evaluate_joint_distribution <- function(data, by_base_time=T, p=0.5){
       cat("\n\n")
     }
     
-    return(score_table)
-    
   }else{
     
     for(i in 1:nfcfiles){
@@ -95,11 +106,12 @@ evaluate_joint_distribution <- function(data, by_base_time=T, p=0.5){
       feval.vars[[i]] <- c(vars.f,dim(dat.eval)[1])
     }
     
-    score_table <- data.frame(forecast=c(fcnames,"reference"),
-                              VarS=c(unlist(lapply(feval.vars,function(x){x[1]})),NA),
-                              dimension=c(unlist(lapply(feval.vars,function(x){x[2]})),NA))
-    return(score_table)
+    score_table <- data.frame(forecast=c(fcnames),
+                              VarS=c(unlist(lapply(feval.vars,function(x){x[1]}))),
+                              dimension=c(unlist(lapply(feval.vars,function(x){x[2]}))))
     
   }
+  
+  return(score_table)
   
 }
