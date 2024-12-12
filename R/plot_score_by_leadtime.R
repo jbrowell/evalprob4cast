@@ -9,7 +9,7 @@
 #' @return a plot of scores by leadtime with one curve for each forecast candidate.
 #' @export
 
-plot_score_by_leadtime <- function(scoretable,main="Score by leadtime",xlab="Leadtime",ylab="Score",xlim="default",ylim="default"){
+plot_score_by_leadtime <- function(scoretable,main="Score by leadtime",xlab="Lead time",ylab="Score",xlim="default",ylim="default",legend=T,legend_pos="topleft"){
   
   # Reshape
   x <- reshape(subset(scoretable,forecast!="reference"), direction="wide", idvar="leadtime", timevar="forecast")
@@ -29,7 +29,9 @@ plot_score_by_leadtime <- function(scoretable,main="Score by leadtime",xlab="Lea
     lines(x[,1],x[,i],col=i,lwd=2)
     points(x[,1],x[,i],col=i,lwd=2,pch=16)
   }
-  legend("topleft",legend=colnames(x)[-1],col=2:ncol,lty=1,lwd=2)
+  if(legend){
+    legend(legend_pos,legend=colnames(x)[-1],col=2:ncol,lty=1,lwd=2,bty="n")
+  }
   axis(1, at = unique(scoretable$leadtime))
   
 }

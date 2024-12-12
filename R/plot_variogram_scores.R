@@ -9,7 +9,7 @@
 #' @return a plot of scores by leadtime with one curve for each forecast candidate.
 #' @export
 
-plot_variogram_scores <- function(scoretable,main="Variogram score by basetime",xlab="Basetime",ylab="VarS",xlim="default",ylim="default",legend=T){
+plot_variogram_scores <- function(scoretable,main="Variogram score by basetime",xlab="Basetime",ylab="VarS",xlim="default",ylim="default",legend=T,legend_pos="topleft"){
   
   # Reshape
   scoretable <- scoretable[which(scoretable$dimension == max(scoretable$dimension,na.rm=T)),]
@@ -34,7 +34,7 @@ plot_variogram_scores <- function(scoretable,main="Variogram score by basetime",
     points(x[,1],x[,i],col=i,lwd=2,pch=16)
   }
   if(legend){
-    legend("topleft",legend=colnames(x)[-1],col=2:ncol,lty=1,lwd=2)
+    legend(legend_pos,legend=colnames(x)[-1],col=2:ncol,lty=1,lwd=2,bty="n")
   }
   
   t <- unique(scoretable$basetime)
