@@ -4,12 +4,16 @@
 \alias{evaluate_joint_distribution}
 \title{Forecast evaluation of the joint distribution using the variogram score}
 \usage{
-evaluate_joint_distribution(data, by_base_time = T, p = 0.5)
+evaluate_joint_distribution(data, p = 0.5, by_base_time = T, aggregate = F)
 }
 \arguments{
 \item{data}{A list containing forecasts and observations.}
 
+\item{p}{Order of the variogram score. Defaults to 0.5.}
+
 \item{by_base_time}{Logical indicator for whether forecast evaluation should be base time-specific or not. Defaults to true.}
+
+\item{aggregate}{only applicable if by_base_time = TRUE.}
 }
 \value{
 A table of scores for the dataset.

@@ -1,15 +1,15 @@
 #' Plot score by lead time
 #'
 #' @param scoretable a table of scores returned from the forecastEvaluation function
-#' @param main the title of the plot. Defaults to "Score by leadtime".
-#' @param xlab the x-label. Defaults to "Leadtime".
-#' @param ylab the y-label. Defaults to "Score".
+#' @param main the title of the plot.
+#' @param xlab the x-label.
+#' @param ylab the y-label.
 #' @param xlim the x-range. Selected automatically unless specified.
 #' @param ylim the y-range. Selected automatically unless specified.
 #' @return a plot of scores by leadtime with one curve for each forecast candidate.
 #' @export
 
-plot_score_by_leadtime <- function(scoretable,main="Score by leadtime",xlab="Lead time",ylab="Score",xlim="default",ylim="default",legend=T,legend_pos="topleft"){
+plot_score_by_leadtime <- function(scoretable,main="default",xlab="Lead time",ylab="default",xlim="default",ylim="default",legend=T,legend_pos="topleft"){
   
   # Reshape
   x <- reshape(subset(scoretable,forecast!="reference"), direction="wide", idvar="leadtime", timevar="forecast")
@@ -22,6 +22,14 @@ plot_score_by_leadtime <- function(scoretable,main="Score by leadtime",xlab="Lea
     ylim = range(x[,-1])
   }
   ncol <- dim(x)[2]
+  
+  # Labels
+  if(main == "default"){
+    main <- paste0(colnames(scoretable)[3]," by lead time")
+  }
+  if(ylab == "default"){
+    ylab <- colnames(scoretable)[3]
+  }
   
   # Plot
   plot(0,0,type="n",xlim=xlim,ylim=ylim,xlab=xlab,ylab=ylab,main=main,xaxt="n")
