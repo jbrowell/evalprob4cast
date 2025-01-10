@@ -9,6 +9,12 @@
 
 event_detection_table <- function(data,change=NA,range=NA,window,export.results=F){
   
+  # Only actual timestamp columns allowed
+  if(class(data$observations$TimeStamp)[1] != "POSIXct"){
+    print("The TimeStamp columns of both observations and forecasts must be of POSIXct class to use this function.")
+    return(-1)
+  }
+  
   # Only one event-argument allowed
   args_selected <- (!is.na(change)) + (!is.na(sum(range)))
   if(args_selected > 1){

@@ -43,7 +43,12 @@ plot_observations <- function(data,x=NULL,grid=F,col="black",
     grid(nx = NA, ny = NULL) 
   }
   
-  text(x = xticks, y = par("usr")[3] - 0.04*yr_len, labels = format(xticks, "%Y-%m-%d %H:%M"),
+  if(class(data$TimeStamp)[1] == "POSIXct"){
+    labels <- format(xticks, "%Y-%m-%d %H:%M")
+  }else{
+    labels <- xticks
+  }
+  text(x = xticks, y = par("usr")[3] - 0.04*yr_len, labels = labels,
        xpd = NA, srt = 35, adj = 0.965, cex = 0.7)
   mtext(xlab, side = 1, line = 4)
   

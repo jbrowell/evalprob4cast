@@ -6,21 +6,23 @@
 \usage{
 plot_score_by_leadtime(
   scoretable,
-  main = "Score by leadtime",
-  xlab = "Leadtime",
-  ylab = "Score",
+  main = "default",
+  xlab = "Lead time",
+  ylab = "default",
   xlim = "default",
-  ylim = "default"
+  ylim = "default",
+  legend = T,
+  legend_pos = "topleft"
 )
 }
 \arguments{
 \item{scoretable}{a table of scores returned from the forecastEvaluation function}
 
-\item{main}{the title of the plot. Defaults to "Score by leadtime".}
+\item{main}{the title of the plot.}
 
-\item{xlab}{the x-label. Defaults to "Leadtime".}
+\item{xlab}{the x-label.}
 
-\item{ylab}{the y-label. Defaults to "Score".}
+\item{ylab}{the y-label.}
 
 \item{xlim}{the x-range. Selected automatically unless specified.}
 

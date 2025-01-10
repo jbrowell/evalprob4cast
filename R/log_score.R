@@ -7,6 +7,9 @@
 
 log_score <- function(f,y){
   
-  -log(approxfun(density(f))(y))
+  pdf <- density(f)
+  pdf$y[pdf$y == 0] <- min(pdf$y[pdf$y != 0]) # Where pdf=0, set to lowest nonzero value
+  pdf_corrected <- max(approxfun(pdf)(y), min(pdf$y)/10, na.rm = T)
+  -log(pdf_corrected)
   
 }

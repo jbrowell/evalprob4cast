@@ -26,7 +26,7 @@ rm(sample_may23_small)
 summary_stats(fc_obs_data)
 
 # Plot
-plot_observations(fc_obs_data$observations)
+plot_observations(fc_obs_data$observations, numobs = 400)
 plot_observations(fc_obs_data$observations, all=T)
 plot_forecasts(fc_obs_data$forecasts$pred_power_northwales)
 lines(fc_obs_data$observations, lwd=1)
@@ -42,13 +42,17 @@ plot_forecasts(fc_obs_data$forecasts$pred_power_lanarkshire, all = T)
 # ======================================== #
 
 # CRPS etc.
-evaluate_marginal_distribution(fc_obs_data,by_lead_time = F)
+evaluate_marginal_distribution(fc_obs_data,by_lead_time = T)
 (crps_by_leadtime <- evaluate_marginal_distribution(fc_obs_data,by_lead_time = T))
 plot_score_by_leadtime(crps_by_leadtime)
 plot_score_by_leadtime(crps_by_leadtime, ylim=c(0,0.2), main="CRPS by leadtime") # Customizable
+(logs_by_leadtime <- evaluate_marginal_distribution(fc_obs_data,by_lead_time = T,metric="LogS"))
+plot_score_by_leadtime(crps_by_leadtime)
+plot_score_by_leadtime(logs_by_leadtime)
+
 
 # Restrict data to intersecting timestamps only
-fc_obs_data_eval <- make_evaluation_subset(fc_obs_data)
+fc_obs_data_eval <- make_evaluation_subset(fc_obs_data, lead_time = 6)
 
 # Individual forecast candidates and the observation set
 f1 <- as.matrix(fc_obs_data_eval$forecasts$pred_power_northwales[,-c(1)])
@@ -82,12 +86,15 @@ rank_histogram_list(fc_obs_data_eval,nbins=20)
 
 # Compute event detection tables for all forecast series, can take some time
 # Event detection tables - select change or range, not both! Here it is range...
+fc_obs_data_eval <- make_evaluation_subset(fc_obs_data)
 detect_table_list <- event_detection_table(fc_obs_data_eval,range=c(0.5,1),window=6)
 plot(fc_obs_data_eval$forecasts$pred_power_northwales$w3,type="l")
 lines(detect_table_list$pred_power_northwales$w3,type="l",col="red",lty=2)
 
 # And here, event defined as a change...
 detect_table_list <- event_detection_table(fc_obs_data_eval,change=-0.01,window=6)
+plot(fc_obs_data_eval$forecasts$pred_power_northwales$w3,type="l")
+lines(detect_table_list$pred_power_northwales$w3,type="l",col="red",lty=2)
 names(detect_table_list) <- c("Forecast A","Forecast B","Forecast C")
 
 # Make contingency tables
