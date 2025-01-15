@@ -11,15 +11,13 @@ event_detection_table <- function(data,change=NA,range=NA,window,export.results=
   
   # Only actual timestamp columns allowed
   if(class(data$observations$TimeStamp)[1] != "POSIXct"){
-    print("The TimeStamp columns of both observations and forecasts must be of POSIXct class to use this function.")
-    return(-1)
+    stop("The TimeStamp columns of both observations and forecasts must be of POSIXct class to use this function.")
   }
   
   # Only one event-argument allowed
   args_selected <- (!is.na(change)) + (!is.na(sum(range)))
   if(args_selected > 1){
-    print("Please select only 1 event-argument (change/range)!")
-    return(-1)
+    stop("Please select only 1 event-argument (change/range)!")
   }
   
   nfcfiles <- length(data$forecasts)
