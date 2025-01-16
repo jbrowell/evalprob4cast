@@ -44,10 +44,10 @@ generate_forecast_evaluation_report <- function(data,dest="./",delete_source=T,
   addline("## Visualized Forecasts")
   addchunk("
   ti <- 1:100
-  for(i in 1:3){
-    f <- fc_obs_data$forecasts[[i]]
-    plot_quantiles(f[ti,-c(1:2)],x=f$TimeStamp[ti],main=paste0(\"Forecast \",LETTERS[i]),ylab = \"Normalized Wind Power\",ylim=c(0,1))
-    lines(fc_obs_data$observations$TimeStamp,fc_obs_data$observations$obs)
+  for(i in 1:length(data$forecasts)){
+    f <- data$forecasts[[i]]
+    plot_forecasts(f)
+    lines(data$observations)
   }",echo=F,fig.w=9,fig.h=5)
   
   # CRPS
