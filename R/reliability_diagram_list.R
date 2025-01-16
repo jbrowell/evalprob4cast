@@ -36,6 +36,10 @@ reliability_diagram_list <- function(detections,bins="default",method="classic",
     
   }else if(method == "CORP"){
     
+    if(!suppressMessages(require("reliabilitydiag"))){
+      stop("In order to use the CORP method, please run install.packages(\"reliabilitydiag\"). The installation has many dependencies and may take a while on a fresh system.\n")
+    }
+    
     if(is.character(bins)){
       bins <- NULL
     }
@@ -43,7 +47,7 @@ reliability_diagram_list <- function(detections,bins="default",method="classic",
     for(i in 1:nfc){
       
       p <- probability_table[[i]]
-      result[[i]] <- suppressWarnings(as.reliabilitydiag(p$prob,p$obs,xvalues=bins))
+      result[[i]] <- suppressWarnings(reliabilitydiag::as.reliabilitydiag(p$prob,p$obs,xvalues=bins))
       
     }
     
