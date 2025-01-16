@@ -1,11 +1,10 @@
 Package: evalprob4cast
 Type: Package
-Title: What the Package Does (Title Case)
+Title: evalprob4cast
 Version: 0.1.0
 Author: Mathias Blicher Bjerregaard, Jethro Browell, Corinna Möhrlen and John Zack
 Maintainer: Mathias Blicher Bjerregaard <mathiasblicher1991@gmail.com>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: Tools for evaluating ensemble/trajectory forecasts, including scores and event-based metrics.
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
