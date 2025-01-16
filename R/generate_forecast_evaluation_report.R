@@ -46,7 +46,7 @@ generate_forecast_evaluation_report <- function(data,dest="./",delete_source=T,
   ti <- 1:100
   for(i in 1:length(data$forecasts)){
     f <- data$forecasts[[i]]
-    plot_forecasts(f)
+    plot_forecasts(f, main=names(data$forecasts)[i])
     lines(data$observations)
   }",echo=F,fig.w=9,fig.h=5)
   
