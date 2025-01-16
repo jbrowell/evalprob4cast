@@ -9,7 +9,7 @@ setwd("~/Documents/GitHub/evalprob4cast/")
 library(evalprob4cast)
 
 # Load data
-load("~/Downloads/testcase_com/data/IEAW51-MSEPS-DKsynop48.rda")
+data("IEAW51-MSEPS-DKsynop48")
 fc_obs_data <- mseps_dk_thoroe48
 
 # Summary statistics
