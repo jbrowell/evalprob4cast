@@ -2,7 +2,7 @@ Package: evalprob4cast
 Type: Package
 Title: What the Package Does (Title Case)
 Version: 0.1.0
-Author: Who wrote it
+Author: Mathias Blicher Bjerregaard, Jethro Browell, Corinna Möhrlen and John Zack
 Maintainer: Mathias Blicher Bjerregaard <mathiasblicher1991@gmail.com>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
@@ -12,5 +12,5 @@ LazyData: true
 RoxygenNote: 7.2.3
 Depends: R (>= 3.5.0),
 	stringr (>= 1.4.1),
-	PRROC (>= 1.3.1),
-	reliabilitydiag (>= 0.2.1)
+	PRROC (>= 1.3.1)
+Suggests: reliabilitydiag (>= 0.2.1)
