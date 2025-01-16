@@ -18,7 +18,7 @@ install(".")
 library(evalprob4cast)
 
 # Load data
-data("ec-sample")
+data("ecmwf_sample")
 
 # Summary statistics
 summary_stats(fc_obs_data)
