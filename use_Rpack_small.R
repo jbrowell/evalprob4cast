@@ -1,5 +1,5 @@
 # INSTALL R PACKAGE
-setwd("~/Documents/GitHub/RP-RES-forecast-evaluation/")
+setwd("~/Documents/GitHub/evalprob4cast/")
 
 library(devtools)
 library(roxygen2)
@@ -15,7 +15,7 @@ install(".")
 # ======================================= #
 
 # Load Package
-library(IEAwind51RP)
+library(evalprob4cast)
 
 # Load data
 data("IEAW51-ReadingExample-small")
@@ -45,11 +45,9 @@ plot_forecasts(fc_obs_data$forecasts$pred_power_lanarkshire, all = T)
 evaluate_marginal_distribution(fc_obs_data,by_lead_time = T)
 (crps_by_leadtime <- evaluate_marginal_distribution(fc_obs_data,by_lead_time = T))
 plot_score_by_leadtime(crps_by_leadtime)
-plot_score_by_leadtime(crps_by_leadtime, ylim=c(0,0.2), main="CRPS by leadtime") # Customizable
+plot_score_by_leadtime(crps_by_leadtime, ylim=c(0,0.2), main="CRPS on power forecast") # Customizable
 (logs_by_leadtime <- evaluate_marginal_distribution(fc_obs_data,by_lead_time = T,metric="LogS"))
-plot_score_by_leadtime(crps_by_leadtime)
 plot_score_by_leadtime(logs_by_leadtime)
-
 
 # Restrict data to intersecting timestamps only
 fc_obs_data_eval <- make_evaluation_subset(fc_obs_data, lead_time = 6)
