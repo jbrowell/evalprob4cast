@@ -1,11 +1,14 @@
 #' Sample data included in package
+#' 
+#' Wind speed ensemble forecasts from the MSEPS Ensemble with 75 members/forecasts
+#' and observations from the corresponding Synop Station in Denmark called Thorø.
 #'
-#' @name sample_fc_obs_data
+#' @name IEAW51-MSEPS-DKsynop48
 #' @docType data
 #' @keywords data
 #' @format list with two entries, \code{observations} and \code{forecasts}. 
 #' \code{forecasts} is a list of \code{data.frame}s containing forecast data. 
-"sample_fc_obs_data"
+"mseps_dk_thoroe48"
 
 #' Regional capacity factor estimates and forecast
 #'

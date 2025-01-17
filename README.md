@@ -33,7 +33,7 @@ library(evalprob4cast)
 ## Usage
 
 ### Examples
-The script `use_Rpack_small.R` demonstrates basic usage using sample data that is included in the package.
+The scripts in `demo/` demonstrates basic usage using sample data that is included in the package.
 
 ### Data format requirements
 

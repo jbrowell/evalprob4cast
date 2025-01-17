@@ -1,6 +1,3 @@
-# Set working directory
-setwd("~/Documents/GitHub/evalprob4cast/")
-
 # ======================================= #
 # ------------ INITIAL STEPS ------------ #
 # ======================================= #
@@ -11,6 +8,7 @@ library(evalprob4cast)
 # Load data
 data("IEAW51-MSEPS-DKsynop48")
 fc_obs_data <- mseps_dk_thoroe48
+rm(mseps_dk_thoroe48)
 
 # Summary statistics
 summary_stats(fc_obs_data)
