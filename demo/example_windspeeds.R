@@ -1,7 +1,3 @@
-# Set working directory
-
-# Set working directory to package repo directory
-
 # ======================================= #
 # ------------ INITIAL STEPS ------------ #
 # ======================================= #
