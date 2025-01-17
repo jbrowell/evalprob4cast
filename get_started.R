@@ -18,9 +18,7 @@ install(".")
 library(evalprob4cast)
 
 # Load data
-data("IEAW51-ReadingExample-small")
-fc_obs_data <- sample_may23_small
-rm(sample_may23_small)
+data("ecmwf_sample")
 
 # Summary statistics
 summary_stats(fc_obs_data)
