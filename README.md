@@ -4,9 +4,9 @@ Implementation of Recommended Practices (reference) for renewable power forecast
 ## Installation instructions
 
 ### Option 1: Install from GitHub
-You can install the package by copying the command below into `R`. You'll need to generate and use a personal `auth_token` as this is still a private repository.
+You can install the package by copying the command below into `R`.
 ``` r
-remotes::install_github(repo="jbrowell/evalprob4cast", dependencies=TRUE, auth_token)
+remotes::install_github(repo="jbrowell/evalprob4cast", dependencies=TRUE)
 ```
 Note that the `remotes` package is required for installation. If it is not installed in your system, install it by running:
 ``` r
