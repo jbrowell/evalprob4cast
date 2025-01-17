@@ -1,5 +1,6 @@
 # Set working directory
-setwd("~/Documents/GitHub/evalprob4cast/")
+
+# Set working directory to package repo directory
 
 # ======================================= #
 # ------------ INITIAL STEPS ------------ #

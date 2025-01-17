@@ -1,5 +1,6 @@
 # INSTALL R PACKAGE
-setwd("~/Documents/GitHub/evalprob4cast/")
+
+# Set working directory to package repo directory
 
 library(devtools)
 library(roxygen2)
@@ -138,3 +139,4 @@ setequal(detect_table_list,imported_table_list)
 # ======================================== #
 
 generate_forecast_evaluation_report(fc_obs_data, event_change = -0.01, event_window = 6)
+
