@@ -2,7 +2,7 @@
 % Please edit documentation in R/reliability_diagram_list.R
 \name{reliability_diagram_list}
 \alias{reliability_diagram_list}
-\title{Reliability diagrams of a list of forecast candidates}
+\title{Reliability diagrams of a list of event detections}
 \usage{
 reliability_diagram_list(
   detections,
@@ -24,5 +24,5 @@ reliability_diagram_list(
 hmm...
 }
 \description{
-Reliability diagrams of a list of forecast candidates
+Reliability diagrams of a list of event detections
 }

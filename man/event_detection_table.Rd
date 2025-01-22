@@ -2,7 +2,7 @@
 % Please edit documentation in R/event_detection_table.R
 \name{event_detection_table}
 \alias{event_detection_table}
-\title{Function for constructing list of event detection tables.}
+\title{Compute a list of event detection tables from a list of forecast candidates}
 \usage{
 event_detection_table(
   data,
@@ -25,5 +25,5 @@ event_detection_table(
 Returns an event detection table.
 }
 \description{
-Function for constructing list of event detection tables.
+Compute a list of event detection tables from a list of forecast candidates
 }

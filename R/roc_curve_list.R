@@ -1,4 +1,4 @@
-#' Produce ROC curves for every forecast candidate in an evaluation set
+#' ROC curves for a list of event detections
 #'
 #' @param detect_table_list List of detection tables
 #' @param main title of ROC plot

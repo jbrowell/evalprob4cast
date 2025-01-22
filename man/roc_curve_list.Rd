@@ -2,7 +2,7 @@
 % Please edit documentation in R/roc_curve_list.R
 \name{roc_curve_list}
 \alias{roc_curve_list}
-\title{Produce ROC curves for every forecast candidate in an evaluation set}
+\title{ROC curves for a list of event detections}
 \usage{
 roc_curve_list(
   detect_table_list,
@@ -22,5 +22,5 @@ roc_curve_list(
 Contingency table for all forecast candidates
 }
 \description{
-Produce ROC curves for every forecast candidate in an evaluation set
+ROC curves for a list of event detections
 }

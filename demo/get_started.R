@@ -111,11 +111,6 @@ reliability_diagram_list(detect_table_list)
 # Classic reliability diagrams (custom bins)
 reliability_diagram_list(detect_table_list,bins = seq(0.04,0.96,by=0.04))
 
-# CORP-based reliability diagrams
-reliability_diagram_list(detect_table_list,method = "CORP")
-# CORP-based reliability diagrams with custom bin selection
-reliability_diagram_list(detect_table_list,method = "CORP",bins = seq(0.05,0.95,by=0.1))
-
 # As expected, Lanarkshire forecasts are by far the worst at predicting events 
 # from North Wales, both according to Brier score and Reliability diagram
 

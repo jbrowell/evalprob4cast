@@ -21,7 +21,7 @@ evaluate_joint_distribution <- function(data, p=0.5, by_base_time=T, aggregate=F
     # Logical, whether each base time has a multivariate forecast or not
     has_base_time <- unlist(lapply(data$forecasts,function(x){"BaseTime" %in% names(x)}))
     
-    # All unique lead times across all forecast candidates
+    # All unique basetimes across all forecast candidates
     unique_base_times <- unique(do.call("c",lapply(f,function(x){unique(x$BaseTime)})))
     
     for(i in 1:nfcfiles){
@@ -79,7 +79,7 @@ evaluate_joint_distribution <- function(data, p=0.5, by_base_time=T, aggregate=F
       score_table$dimension <- NULL
       
       x <- reshape(subset(score_table,forecast!="reference"), direction="wide", idvar="basetime", timevar="forecast")
-      score_table <- data.frame(forecast = fcnames,VarS = colMeans(x[,-1]),dimension = max_dim)
+      score_table <- data.frame(forecast = fcnames,VarS = colMeans(x[,-1], na.rm=T),dimension = max_dim)
       row.names(score_table) <- NULL
       
     }

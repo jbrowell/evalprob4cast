@@ -2,7 +2,7 @@
 % Please edit documentation in R/brier_score_list.R
 \name{brier_score_list}
 \alias{brier_score_list}
-\title{Add together two numbers}
+\title{Brier scores for a list of event detections}
 \usage{
 brier_score_list(detections, prob = F)
 }
@@ -12,8 +12,8 @@ brier_score_list(detections, prob = F)
 \item{prob}{Logical argument indiciating whether the first argument are probabilities or ensemble detections.}
 }
 \value{
-A vector of Brier scores.
+A vector of Brier scores, one for each forecast model.
 }
 \description{
-Add together two numbers
+Brier scores for a list of event detections
 }

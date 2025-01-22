@@ -1,4 +1,4 @@
-#' Function for constructing list of event detection tables.
+#' Compute a list of event detection tables from a list of forecast candidates
 #' 
 #' @param data Data object returned by the loadData function.
 #' @param change Flat signed change in forecasted variable.

@@ -1,4 +1,4 @@
-#' Reliability diagrams of a list of forecast candidates
+#' Reliability diagrams of a list of event detections
 #'
 #' @param detections A list of detections, which can be either ensemble detection tables or probability tables
 #' @param bins the vector of bins, given as the points of distinction between individual bins, including 0 and 1. The default binning is selected by setting this argument to "default".

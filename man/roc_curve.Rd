@@ -2,7 +2,7 @@
 % Please edit documentation in R/roc_curve.R
 \name{roc_curve}
 \alias{roc_curve}
-\title{Produce a ROC curve for}
+\title{Produce a ROC curve}
 \usage{
 roc_curve(
   detect_table_prob,
@@ -22,5 +22,5 @@ roc_curve(
 Contingency table for all forecast candidates
 }
 \description{
-Produce a ROC curve for
+Produce a ROC curve
 }

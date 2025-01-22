@@ -1,4 +1,4 @@
-#' Produce a ROC curve for 
+#' Produce a ROC curve
 #'
 #' @param detect_table_prob detection table with event probabilities
 #' @param main title of ROC plot

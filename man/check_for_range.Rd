@@ -2,18 +2,18 @@
 % Please edit documentation in R/check_for_range.R
 \name{check_for_range}
 \alias{check_for_range}
-\title{Check for ramps/shutdowns within a univariate time series subset}
+\title{Check for range-hits within a univariate time series subset}
 \usage{
 check_for_range(data, range)
 }
 \arguments{
 \item{data}{Data object returned by the loadData function}
 
-\item{range}{Flat signed change in forecasted variable}
+\item{range}{Range/interval of forecasted variable required for having an event}
 }
 \value{
 Boolean, 1 = event happened, 0 = event did not happen
 }
 \description{
-Check for ramps/shutdowns within a univariate time series subset
+Check for range-hits within a univariate time series subset
 }
