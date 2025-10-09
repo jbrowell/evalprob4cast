@@ -50,6 +50,9 @@ load_forecast_data <- function(path,timeformat_f="default",timeformat_obs="defau
         datl[[i]] <- cbind(data.frame(BaseTime = datl[[i]]$TimeStamp-lubridate::hour(datl[[i]]$TimeStamp)*60^2),
                            datl[[i]])
         datl[[i]]
+      }else{
+        datl[[i]][,2] <- as.POSIXct(strptime(datl[[i]][,2],format=timeformat_f,tz=timezone_f))
+        colnames(datl[[i]])[1] <- "BaseTime"
       }
     }
   }

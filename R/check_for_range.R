@@ -1,6 +1,6 @@
 #' Check for range-hits within a univariate time series subset
 #' 
-#' @param data Data object returned by the loadData function
+#' @param data A vector of numerical values
 #' @param range Range/interval of forecasted variable required for having an event
 #' @return Boolean, 1 = event happened, 0 = event did not happen
 #' @export
