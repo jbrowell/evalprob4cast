@@ -52,7 +52,7 @@ load_forecast_data <- function(path,timeformat_f="default",timeformat_obs="defau
         datl[[i]]
       }else{
         datl[[i]][,2] <- as.POSIXct(strptime(datl[[i]][,2],format=timeformat_f,tz=timezone_f))
-        colnames(datl[[i]])[1] <- "BaseTime"
+        colnames(datl[[i]])[2] <- "BaseTime"
       }
     }
   }
