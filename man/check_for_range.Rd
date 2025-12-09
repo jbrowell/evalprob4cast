@@ -7,7 +7,7 @@
 check_for_range(data, range)
 }
 \arguments{
-\item{data}{Data object returned by the loadData function}
+\item{data}{A vector of numerical values}
 
 \item{range}{Range/interval of forecasted variable required for having an event}
 }

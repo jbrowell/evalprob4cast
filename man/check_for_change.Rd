@@ -7,7 +7,7 @@
 check_for_change(data, ch)
 }
 \arguments{
-\item{data}{Data object returned by the loadData function}
+\item{data}{A vector of numerical values}
 
 \item{ch}{Flat signed change in forecasted variable}
 }

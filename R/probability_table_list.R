@@ -6,6 +6,8 @@
 probability_table_list <- function(detect_table_list){
   
   list_of_probs <- lapply(detect_table_list, function(x){
+    
+    x$BaseTime <- NULL
     data.frame(TimeStamp=x$TimeStamp,
                obs=x$obs,
                prob=rowSums(as.matrix(x[,-c(1,2)]))/(dim(x)[2]-2))
