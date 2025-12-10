@@ -1,6 +1,6 @@
 #' Plot comparable variogram scores
 #'
-#' @param scoretable a table of scores returned from the forecastEvaluation function
+#' @param scoretable a table of scores returned from the evaluate_joint_distribution function
 #' @param main the title of the plot. Defaults to "Score by leadtime".
 #' @param xlab the x-label. Defaults to "Leadtime".
 #' @param ylab the y-label. Defaults to "Score".

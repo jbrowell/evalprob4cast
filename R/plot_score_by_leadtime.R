@@ -1,6 +1,6 @@
 #' Plot score by lead time
 #'
-#' @param scoretable a table of scores returned from the forecastEvaluation function
+#' @param scoretable a table of scores returned from the evaluate_marginal_distribution function
 #' @param main the title of the plot.
 #' @param xlab the x-label.
 #' @param ylab the y-label.

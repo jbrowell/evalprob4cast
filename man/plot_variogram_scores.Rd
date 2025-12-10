@@ -16,7 +16,7 @@ plot_variogram_scores(
 )
 }
 \arguments{
-\item{scoretable}{a table of scores returned from the forecastEvaluation function}
+\item{scoretable}{a table of scores returned from the evaluate_joint_distribution function}
 
 \item{main}{the title of the plot. Defaults to "Score by leadtime".}
 

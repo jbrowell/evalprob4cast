@@ -16,7 +16,7 @@ plot_score_by_leadtime(
 )
 }
 \arguments{
-\item{scoretable}{a table of scores returned from the forecastEvaluation function}
+\item{scoretable}{a table of scores returned from the evaluate_marginal_distribution function}
 
 \item{main}{the title of the plot.}
 
